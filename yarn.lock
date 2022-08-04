@@ -32,6 +32,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/big-shoulders-display@^4.5.8":
+  version "4.5.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/big-shoulders-display/-/big-shoulders-display-4.5.8.tgz#bfb807e29e0981e6a43a5d6ed6c43df204b7e540"
+  integrity sha512-RAR33u//iQgiws2vl6K4k65DExIOEFjNoA3+DFLWKGR6LskX0g8nQYf9cFJVTzn3IanFRNBIkvXv1XksEhcAig==
+
 "@fontsource/inter@^4.5.11":
   version "4.5.11"
   resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.5.11.tgz#3c45014821e8c82b247a291f1944dd2764a2d1ed"
