@@ -10,11 +10,19 @@
 
 @layer components {
   .nav-item {
-    @apply inline-flex items-center w-full px-6 py-3 rounded-full space-x-2;
+    @apply inline-flex items-center w-full px-6 py-3 text-day rounded-full space-x-2 transition-all ease-in-out;
+  }
+
+  .nav-item:hover {
+    @apply text-night bg-gray-200;
+  }
+
+  .nav-item:hover svg {
+    @apply stroke-purple-500;
   }
 
   .nav-item.is-active {
-    @apply bg-gray-200;
+    @apply text-night bg-gray-200;
   }
 }
 

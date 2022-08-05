@@ -15,6 +15,7 @@ module.exports = {
         dusk: '#202022',
         day: '#f5ffff',
         dawn: '#949495',
+        dortmund: '#fde100'
       }
     },
   },

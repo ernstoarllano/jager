@@ -1,60 +1,47 @@
 import {
   BriefcaseIcon,
-  CogIcon,
-  LogoutIcon,
   OfficeBuildingIcon,
   TemplateIcon,
-  UserCircleIcon,
+  UserGroupIcon,
 } from '@heroicons/react/outline'
+import Link from 'next/link'
 
 const Nav = () => {
   return (
     <>
-      <nav className="pb-10 border-b border-solid border-gray-200">
+      <nav className="pb-10">
         <ul className="space-y-1">
           <li>
-            <a className="nav-item is-active" href="#">
-              <TemplateIcon className="w-5 h-5 stroke-purple-500" />
-              <span>Dashboard</span>
-            </a>
+            <Link href="/">
+              <a className="nav-item is-active">
+                <TemplateIcon className="w-5 h-5 stroke-purple-500" />
+                <span>Dashboard</span>
+              </a>
+            </Link>
           </li>
           <li>
-            <a className="nav-item" href="#">
-              <BriefcaseIcon className="w-5 h-5 stroke-gray-500" />
-              <span>Jobs</span>
-            </a>
+            <Link href="/jobs">
+              <a className="nav-item">
+                <BriefcaseIcon className="w-5 h-5 stroke-gray-500" />
+                <span>Jobs</span>
+              </a>
+            </Link>
           </li>
           <li>
-            <a className="nav-item" href="#">
-              <OfficeBuildingIcon className="w-5 h-5 stroke-gray-500" />
-              <span>Companies</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <nav className="pb-10 border-b border-solid border-gray-200">
-        <ul>
-          <li>
-            <a className="nav-item" href="#">
-              <UserCircleIcon className="w-5 h-5 stroke-gray-500" />
-              <span>Account</span>
-            </a>
+            <Link href="/companies">
+              <a className="nav-item">
+                <OfficeBuildingIcon className="w-5 h-5 stroke-gray-500" />
+                <span>Companies</span>
+              </a>
+            </Link>
           </li>
           <li>
-            <a className="nav-item" href="#">
-              <CogIcon className="w-5 h-5 stroke-gray-500" />
-              <span>Settings</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <nav>
-        <ul>
-          <li>
-            <a className="nav-item" href="#">
-              <LogoutIcon className="w-5 h-5 stroke-gray-500" />
-              <span>Logout</span>
-            </a>
+            <Link href="/recruiters">
+              <a className="nav-item">
+                <UserGroupIcon className="w-5 h-5 stroke-gray-500" />
+                <span>Recruiters</span>
+              </a>
+            </Link>
           </li>
         </ul>
       </nav>
