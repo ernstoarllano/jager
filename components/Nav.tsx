@@ -13,28 +13,19 @@ const Nav = () => {
       <nav className="pb-10 border-b border-solid border-gray-200">
         <ul className="space-y-1">
           <li>
-            <a
-              className="inline-flex items-center w-full px-6 py-3 bg-gray-50 rounded-full space-x-2"
-              href="#"
-            >
+            <a className="nav-item is-active" href="#">
               <TemplateIcon className="w-5 h-5 stroke-purple-500" />
               <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a
-              className="inline-flex items-center w-full px-6 py-3 bg-transparent rounded-full space-x-2"
-              href="#"
-            >
+            <a className="nav-item" href="#">
               <BriefcaseIcon className="w-5 h-5 stroke-gray-500" />
               <span>Jobs</span>
             </a>
           </li>
           <li>
-            <a
-              className="inline-flex items-center w-full px-6 py-3 bg-transparent rounded-full space-x-2"
-              href="#"
-            >
+            <a className="nav-item" href="#">
               <OfficeBuildingIcon className="w-5 h-5 stroke-gray-500" />
               <span>Companies</span>
             </a>
@@ -44,19 +35,13 @@ const Nav = () => {
       <nav className="pb-10 border-b border-solid border-gray-200">
         <ul>
           <li>
-            <a
-              className="inline-flex items-center w-full px-6 py-3 bg-transparent rounded-full space-x-2"
-              href="#"
-            >
+            <a className="nav-item" href="#">
               <UserCircleIcon className="w-5 h-5 stroke-gray-500" />
               <span>Account</span>
             </a>
           </li>
           <li>
-            <a
-              className="inline-flex items-center w-full px-6 py-3 bg-transparent rounded-full space-x-2"
-              href="#"
-            >
+            <a className="nav-item" href="#">
               <CogIcon className="w-5 h-5 stroke-gray-500" />
               <span>Settings</span>
             </a>
@@ -66,10 +51,7 @@ const Nav = () => {
       <nav>
         <ul>
           <li>
-            <a
-              className="inline-flex items-center w-full px-6 py-3 bg-transparent rounded-full space-x-2"
-              href="#"
-            >
+            <a className="nav-item" href="#">
               <LogoutIcon className="w-5 h-5 stroke-gray-500" />
               <span>Logout</span>
             </a>
