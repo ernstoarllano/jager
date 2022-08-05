@@ -43,6 +43,14 @@ const Nav = () => {
               </a>
             </Link>
           </li>
+          <li>
+            <Link href="/managers">
+              <a className="nav-item">
+                <UserGroupIcon className="w-5 h-5 stroke-gray-500" />
+                <span>Managers</span>
+              </a>
+            </Link>
+          </li>
         </ul>
       </nav>
     </>

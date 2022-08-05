@@ -18,6 +18,8 @@ model Job {
   companyId     Int
   recruiter     Recruiter? @relation(fields: [recruiterId], references: [id])
   recruiterId   Int?
+  manager       Manager?   @relation(fields: [managerId], references: [id])
+  managerId     Int?
   salary        Int
   eliminated    Boolean?   @default(false)
   appliedOn     DateTime
@@ -43,10 +45,20 @@ model Company {
 }
 
 model Recruiter {
-  id        Int       @id @default(autoincrement())
-  firstName String
-  lastName  String
-  linkedIn  String?
-  jobs      Job[]
-  companies Company[]
+  id                 Int       @id @default(autoincrement())
+  firstName          String
+  lastName           String
+  linkedIn           String?
+  positiveExperience Boolean   @default(false)
+  jobs               Job[]
+  companies          Company[]
+}
+
+model Manager {
+  id                 Int     @id @default(autoincrement())
+  firstName          String
+  lastName           String
+  linkedIn           String?
+  positiveExperience Boolean @default(false)
+  jobs               Job[]
 }
