@@ -1,4 +1,4 @@
-import { RoleProps } from 'interfaces/Role'
+import { RoleProps } from 'interfaces/Components'
 
 const Role = ({ count, role }: RoleProps) => {
   return (

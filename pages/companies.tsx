@@ -1,8 +1,9 @@
 import Dashboard from 'components/Dashboard'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
+import { getCompanies } from 'services/getCompanies'
 
-const Companies = () => {
+const Companies = ({ companies }: any) => {
   return (
     <>
       <Head>
@@ -19,8 +20,10 @@ const Companies = () => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
+    const { companies } = await getCompanies()
+
     return {
-      props: {},
+      props: { companies },
     }
   } catch (err) {
     console.error(err)

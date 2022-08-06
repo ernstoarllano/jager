@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Job {
@@ -21,10 +22,14 @@ model Job {
   manager       Manager?   @relation(fields: [managerId], references: [id])
   managerId     Int?
   salary        Int
-  eliminated    Boolean?   @default(false)
   appliedOn     DateTime
+  screened      Boolean    @default(false)
+  screenedOn    DateTime?
+  interviewed   Boolean    @default(false)
   interviewedOn DateTime?
+  hired         Boolean    @default(false)
   hiredOn       DateTime?
+  eliminated    Boolean    @default(false)
   elminatedOn   DateTime?
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
@@ -33,15 +38,16 @@ model Job {
 model Role {
   id   Int    @id @default(autoincrement())
   name String
-  jobs Job[]
+  job  Job[]
 }
 
 model Company {
-  id         Int         @id @default(autoincrement())
-  name       String
-  website    String
-  jobs       Job[]
-  recruiters Recruiter[]
+  id        Int         @id @default(autoincrement())
+  name      String
+  website   String
+  job       Job[]
+  recruiter Recruiter[]
+  manager   Manager[]
 }
 
 model Recruiter {
@@ -49,16 +55,17 @@ model Recruiter {
   firstName          String
   lastName           String
   linkedIn           String?
-  positiveExperience Boolean   @default(false)
-  jobs               Job[]
-  companies          Company[]
+  positiveExperience Boolean   @default(true)
+  job                Job[]
+  company            Company[]
 }
 
 model Manager {
-  id                 Int     @id @default(autoincrement())
+  id                 Int       @id @default(autoincrement())
   firstName          String
   lastName           String
   linkedIn           String?
-  positiveExperience Boolean @default(false)
-  jobs               Job[]
+  positiveExperience Boolean   @default(true)
+  job                Job[]
+  company            Company[]
 }

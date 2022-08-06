@@ -1,6 +1,6 @@
 import { prisma } from 'lib/prisma'
 
-export const getJobRoles = async () => {
+export const getRoles = async () => {
   try {
     const roles = await prisma.role.findMany({
       select: {

@@ -2,9 +2,9 @@ import { prisma } from 'lib/prisma'
 
 export const getTotalApplications = async () => {
   try {
-    const applications = await prisma.job.count()
+    const totalApplications = await prisma.job.count()
 
-    return { applications }
+    return { totalApplications }
   } catch (err) {
     console.error(err)
 

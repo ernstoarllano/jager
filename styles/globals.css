@@ -24,6 +24,14 @@
   .nav-item.is-active {
     @apply text-night bg-gray-200;
   }
+
+  .table-head {
+    @apply py-5 font-bold text-dusk;
+  }
+
+  .table-body {
+    @apply font-light text-gray-500 text-left;
+  }
 }
 
 @layer utilities {
