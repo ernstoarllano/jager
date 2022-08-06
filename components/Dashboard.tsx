@@ -6,9 +6,11 @@ import { DashboardProps } from 'interfaces/Dashboard'
 const Dashboard = ({ children }: DashboardProps) => {
   return (
     <main className="lg:grid lg:grid-cols-12 lg:h-screen">
-      <aside className="col-span-2 p-10 bg-night border-r border-solid border-gray-200 space-y-12">
-        <Logo />
-        <Nav />
+      <aside className="col-span-2 p-10 bg-night border-r border-solid border-gray-200">
+        <div className="lg:sticky lg:top-10 lg:left-0 space-y-12">
+          <Logo />
+          <Nav />
+        </div>
       </aside>
       <div className="col-span-10">
         <Header />

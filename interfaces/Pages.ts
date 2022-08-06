@@ -1,4 +1,5 @@
 import { Company } from 'interfaces/Company'
+import { Job } from 'interfaces/Job'
 import { Manager } from 'interfaces/Manager'
 import { Recruiter } from 'interfaces/Recruiter'
 import { Role } from 'interfaces/Role'
@@ -13,5 +14,13 @@ export interface HomeProps {
   screenings: Screening[]
   companies: Company[]
   recruiters: Recruiter[]
+  managers: Manager[]
+}
+
+export interface JobsProps {
+  jobs: Job[]
+}
+
+export interface ManagersProps {
   managers: Manager[]
 }

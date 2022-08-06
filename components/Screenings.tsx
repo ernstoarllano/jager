@@ -26,12 +26,12 @@ const Screenings = ({ screenings }: ScreeningsProps) => {
               key={screening.id}
               className="border-b border-solid border-gray-200 last:border-b-0"
             >
-              <td className="py-5">
+              <td className="table-data">
                 <time className="font-medium text-purple-500">
                   {formatDateTime(screening.screenedOn)}
                 </time>
               </td>
-              <td className="py-5">
+              <td className="table-data">
                 {screening.recruiter && (
                   <span>
                     {screening.recruiter.firstName}{' '}
@@ -39,10 +39,10 @@ const Screenings = ({ screenings }: ScreeningsProps) => {
                   </span>
                 )}
               </td>
-              <td className="py-5">
+              <td className="table-data">
                 <span>{screening.company.name}</span>
               </td>
-              <td className="py-5">
+              <td className="table-data">
                 <span>{screening.role.name}</span>
               </td>
             </tr>

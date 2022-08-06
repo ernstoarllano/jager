@@ -26,7 +26,7 @@
   }
 
   .table-head {
-    @apply py-5 font-bold text-dusk;
+    @apply py-5 font-semibold text-dusk;
   }
 
   .table-body {
@@ -34,7 +34,7 @@
   }
 
   .table-data {
-    @apply p-5 border-r border-solid border-gray-200 last:border-r-0;
+    @apply py-5;
   }
 }
 

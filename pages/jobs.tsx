@@ -1,10 +1,11 @@
 import Dashboard from 'components/Dashboard'
 import JobsTable from 'components/tables/JobsTable'
+import { JobsProps } from 'interfaces/Pages'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { getJobs } from 'services/getJobs'
 
-const Jobs = ({ jobs }: any) => {
+const Jobs = ({ jobs }: JobsProps) => {
   return (
     <>
       <Head>
