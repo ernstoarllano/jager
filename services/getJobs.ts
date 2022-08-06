@@ -4,6 +4,7 @@ export const getJobs = async () => {
   try {
     const jobs = await prisma.job.findMany({
       select: {
+        id: true,
         role: true,
         recruiter: true,
         manager: true,

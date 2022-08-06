@@ -32,6 +32,10 @@
   .table-body {
     @apply font-light text-gray-500 text-left;
   }
+
+  .table-data {
+    @apply p-5 border-r border-solid border-gray-200 last:border-r-0;
+  }
 }
 
 @layer utilities {
