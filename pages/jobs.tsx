@@ -1,7 +1,7 @@
 import Dashboard from 'components/Dashboard'
 import JobsTable from 'components/tables/JobsTable'
 import { JobsProps } from 'interfaces/Pages'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { getJobs } from 'services/getJobs'
 
@@ -22,7 +22,7 @@ const Jobs = ({ jobs }: JobsProps) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const { jobs } = await getJobs()
 

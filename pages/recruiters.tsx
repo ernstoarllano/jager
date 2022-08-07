@@ -1,5 +1,5 @@
 import Dashboard from 'components/Dashboard'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 
 const Recruiters = () => {
@@ -17,7 +17,7 @@ const Recruiters = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     return {
       props: {},

@@ -1,7 +1,7 @@
 import Dashboard from 'components/Dashboard'
 import ManagersTable from 'components/tables/ManagersTable'
 import { ManagersProps } from 'interfaces/Pages'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { getManagers } from 'services/getManagers'
 
@@ -22,7 +22,7 @@ const Managers = ({ managers }: ManagersProps) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const { managers } = await getManagers()
 

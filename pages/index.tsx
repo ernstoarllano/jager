@@ -8,7 +8,7 @@ import Screenings from 'components/Screenings'
 import Stat from 'components/Stat'
 import Stats from 'components/Stats'
 import { HomeProps } from 'interfaces/Pages'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { getCompanies } from 'services/getCompanies'
 import { getEliminatedJobs } from 'services/getEliminatedJobs'
@@ -59,7 +59,7 @@ const Home = ({
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const { totalEliminated } = await getEliminatedJobs()
     const { totalScreenings } = await getTotalScreenings()
@@ -83,6 +83,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         recruiters,
         managers,
       },
+      revalidate: 86400,
     }
   } catch (err) {
     console.error(err)

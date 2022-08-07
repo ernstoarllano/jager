@@ -1,5 +1,5 @@
 import Dashboard from 'components/Dashboard'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { getCompanies } from 'services/getCompanies'
 
@@ -18,12 +18,13 @@ const Companies = ({ companies }: any) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const { companies } = await getCompanies()
 
     return {
       props: { companies },
+      revalidate: 86400,
     }
   } catch (err) {
     console.error(err)
