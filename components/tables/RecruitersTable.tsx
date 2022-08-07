@@ -1,9 +1,8 @@
 import { PlusIcon } from '@heroicons/react/outline'
 import Experience from 'components/Experience'
-import { ManagersTableProps } from 'interfaces/Components'
+import { RecruitersTableProps } from 'interfaces/Components'
 
-const ManagersTable = ({ managers }: ManagersTableProps) => {
-  console.log(managers)
+const RecruitersTable = ({ recruiters }: RecruitersTableProps) => {
   return (
     <section className="p-10 border-b border-solid border-gray-200">
       <article className="p-8 border border-solid border-gray-200 rounded-3xl shadow-lg space-y-6">
@@ -24,24 +23,26 @@ const ManagersTable = ({ managers }: ManagersTableProps) => {
             </tr>
           </thead>
           <tbody className="table-body">
-            {managers.map((manager) => (
+            {recruiters.map((recruiter) => (
               <tr
-                key={manager.id}
+                key={recruiter.id}
                 className="border-b border-solid border-gray-200 last:border-b-0"
               >
                 <td className="table-data">
                   <span>
-                    {manager.firstName} {manager.lastName}
+                    {recruiter.firstName} {recruiter.lastName}
                   </span>
                 </td>
                 <td className="table-data">
-                  {manager.company && <span>{manager.company[0].name}</span>}
+                  {recruiter.company && (
+                    <span>{recruiter.company[0].name}</span>
+                  )}
                 </td>
                 <td className="table-data">
-                  {manager.linkedIn && (
+                  {recruiter.linkedIn && (
                     <a
                       className="inline-flex items-center"
-                      href={manager.linkedIn}
+                      href={recruiter.linkedIn}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -56,7 +57,7 @@ const ManagersTable = ({ managers }: ManagersTableProps) => {
                   )}
                 </td>
                 <td className="table-data">
-                  <Experience experience={manager.positiveExperience} />
+                  <Experience experience={recruiter.positiveExperience} />
                 </td>
               </tr>
             ))}
@@ -67,4 +68,4 @@ const ManagersTable = ({ managers }: ManagersTableProps) => {
   )
 }
 
-export default ManagersTable
+export default RecruitersTable

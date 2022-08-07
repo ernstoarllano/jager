@@ -24,3 +24,7 @@ export interface JobsProps {
 export interface ManagersProps {
   managers: Manager[]
 }
+
+export interface RecruitersProps {
+  managers: Manager[]
+}

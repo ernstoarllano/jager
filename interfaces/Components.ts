@@ -37,3 +37,7 @@ export interface JobsTableProps {
 export interface ManagersTableProps {
   managers: Manager[]
 }
+
+export interface RecruitersTableProps {
+  recruiters: Recruiter[]
+}

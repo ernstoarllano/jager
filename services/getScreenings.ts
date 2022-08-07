@@ -8,6 +8,9 @@ export const getScreenings = async () => {
       },
       where: {
         screened: false,
+        screenedOn: {
+          not: null,
+        },
         eliminated: false,
       },
       select: {

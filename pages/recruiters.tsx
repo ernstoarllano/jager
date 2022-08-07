@@ -1,8 +1,11 @@
 import Dashboard from 'components/Dashboard'
+import RecruitersTable from 'components/tables/RecruitersTable'
+import { RecruitersProps } from 'interfaces/Components'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
+import { getRecruiters } from 'services/getRecruiters'
 
-const Recruiters = () => {
+const Recruiters = ({ recruiters }: RecruitersProps) => {
   return (
     <>
       <Head>
@@ -12,15 +15,19 @@ const Recruiters = () => {
         <meta property="og:image:width" content="759" />
         <meta property="og:image:height" content="485" />
       </Head>
-      <Dashboard></Dashboard>
+      <Dashboard>
+        <RecruitersTable recruiters={recruiters} />
+      </Dashboard>
     </>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
+    const { recruiters } = await getRecruiters()
+
     return {
-      props: {},
+      props: { recruiters },
     }
   } catch (err) {
     console.error(err)

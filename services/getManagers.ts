@@ -6,6 +6,9 @@ export const getManagers = async () => {
       include: {
         company: true,
       },
+      orderBy: {
+        lastName: 'asc',
+      },
     })
 
     return { managers }
