@@ -1,4 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ernstoarllano/ernestoarellano.dev/1358f5c0d32974a58592ec7d726ce06febd9993a/public/jager.svg" height="80">
+</p>
+
+<p align="center">
+  <strong>Next.js project with Prisma and Tailwind CSS to track personal job hunting</strong>
+</p>
 
 ## Getting Started
 
