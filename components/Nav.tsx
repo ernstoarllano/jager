@@ -5,52 +5,63 @@ import {
   UserGroupIcon,
 } from '@heroicons/react/outline'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+interface NavPageProps {
+  title: string
+  icon: React.ReactNode
+  url: string
+}
 
 const Nav = () => {
+  const { asPath } = useRouter()
+
+  const pages: NavPageProps[] = [
+    {
+      title: 'Dashboard',
+      icon: <TemplateIcon />,
+      url: '/',
+    },
+    {
+      title: 'Jobs',
+      icon: <BriefcaseIcon />,
+      url: '/jobs',
+    },
+    {
+      title: 'Companies',
+      icon: <OfficeBuildingIcon />,
+      url: '/companies',
+    },
+    {
+      title: 'Recruiters',
+      icon: <UserGroupIcon />,
+      url: '/recruiters',
+    },
+    {
+      title: 'Managers',
+      icon: <UserGroupIcon />,
+      url: '/managers',
+    },
+  ]
+
   return (
     <>
       <nav className="pb-10">
         <ul className="space-y-1">
-          <li>
-            <Link href="/">
-              <a className="nav-item is-active">
-                <TemplateIcon className="w-5 h-5 stroke-purple-500" />
-                <span>Dashboard</span>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/jobs">
-              <a className="nav-item">
-                <BriefcaseIcon className="w-5 h-5 stroke-gray-500" />
-                <span>Jobs</span>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/companies">
-              <a className="nav-item">
-                <OfficeBuildingIcon className="w-5 h-5 stroke-gray-500" />
-                <span>Companies</span>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/recruiters">
-              <a className="nav-item">
-                <UserGroupIcon className="w-5 h-5 stroke-gray-500" />
-                <span>Recruiters</span>
-              </a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/managers">
-              <a className="nav-item">
-                <UserGroupIcon className="w-5 h-5 stroke-gray-500" />
-                <span>Managers</span>
-              </a>
-            </Link>
-          </li>
+          {pages.map((page, idx) => (
+            <li key={idx}>
+              <Link href={page.url}>
+                <a
+                  className={`nav-item ${
+                    asPath === page.url ? 'is-active' : ''
+                  }`}
+                >
+                  {page.icon}
+                  <span>{page.title}</span>
+                </a>
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </>

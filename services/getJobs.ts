@@ -3,6 +3,9 @@ import { prisma } from 'lib/prisma'
 export const getJobs = async () => {
   try {
     const jobs = await prisma.job.findMany({
+      orderBy: {
+        id: 'asc',
+      },
       select: {
         id: true,
         role: true,

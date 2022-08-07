@@ -1,6 +1,6 @@
 import { prisma } from 'lib/prisma'
 
-export const getRecruiters = async () => {
+export const getRecruiters = async (take: number = 6) => {
   try {
     const recruiters = await prisma.recruiter.findMany({
       include: {
@@ -9,6 +9,7 @@ export const getRecruiters = async () => {
       orderBy: {
         lastName: 'asc',
       },
+      take: take,
     })
 
     return { recruiters }

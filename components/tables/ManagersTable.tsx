@@ -3,7 +3,6 @@ import Experience from 'components/Experience'
 import { ManagersTableProps } from 'interfaces/Components'
 
 const ManagersTable = ({ managers }: ManagersTableProps) => {
-  console.log(managers)
   return (
     <section className="p-10 border-b border-solid border-gray-200">
       <article className="p-8 border border-solid border-gray-200 rounded-3xl shadow-lg space-y-6">

@@ -41,3 +41,7 @@ export interface ManagersTableProps {
 export interface RecruitersTableProps {
   recruiters: Recruiter[]
 }
+
+export interface CompaniesTableProps {
+  companies: Company[]
+}

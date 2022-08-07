@@ -1,6 +1,6 @@
 import { prisma } from 'lib/prisma'
 
-export const getManagers = async () => {
+export const getManagers = async (take: number = 6) => {
   try {
     const managers = await prisma.manager.findMany({
       include: {
@@ -9,6 +9,7 @@ export const getManagers = async () => {
       orderBy: {
         lastName: 'asc',
       },
+      take: take,
     })
 
     return { managers }
