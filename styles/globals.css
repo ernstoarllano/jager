@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply font-inter font-normal text-night text-render-legibility bg-day;
+    @apply font-inter font-normal text-night text-render-legibility bg-gray-50;
   }
 }
 
@@ -18,7 +18,7 @@
   }
 
   .nav-item.is-active {
-    @apply text-night bg-gray-200;
+    @apply text-night bg-day;
   }
 
   .nav-item.is-active svg {

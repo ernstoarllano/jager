@@ -1,15 +1,18 @@
-import { GlobeAltIcon, PlusIcon } from '@heroicons/react/outline'
+import { GlobeAltIcon } from '@heroicons/react/outline'
+import { addCompany } from 'helpers/addCompany'
 import { CompaniesTableProps } from 'interfaces/Components'
 
 const CompaniesTable = ({ companies }: CompaniesTableProps) => {
   return (
     <section className="p-10 border-b border-solid border-gray-200">
-      <article className="p-8 border border-solid border-gray-200 rounded-3xl shadow-lg space-y-6">
+      <article className="p-8 bg-white border border-solid border-gray-200 rounded-3xl shadow-lg space-y-6">
         <div className="flex items-center justify-between pb-5 border-b border-solid border-gray-200">
           <h2 className="text-3xl font-bold">Companies</h2>
-          <button className="flex items-center px-6 py-3 text-sm font-semibold text-day bg-purple-500 rounded-full space-x-2">
-            <span>Add New Manager</span>
-            <PlusIcon className="w-4 h-4 stroke-[3px] stroke-day" />
+          <button
+            className="flex items-center px-6 py-3 text-sm font-semibold text-day bg-purple-500 rounded-full space-x-2"
+            onClick={addCompany}
+          >
+            <span>Add Company</span>
           </button>
         </div>
         <table className="w-full table-auto">

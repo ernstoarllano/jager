@@ -1,16 +1,18 @@
-import { PlusIcon } from '@heroicons/react/outline'
 import Experience from 'components/Experience'
+import { addManager } from 'helpers/addManager'
 import { ManagersTableProps } from 'interfaces/Components'
 
 const ManagersTable = ({ managers }: ManagersTableProps) => {
   return (
     <section className="p-10 border-b border-solid border-gray-200">
-      <article className="p-8 border border-solid border-gray-200 rounded-3xl shadow-lg space-y-6">
+      <article className="p-8 bg-white border border-solid border-gray-200 rounded-3xl shadow-lg space-y-6">
         <div className="flex items-center justify-between pb-5 border-b border-solid border-gray-200">
           <h2 className="text-3xl font-bold">Managers</h2>
-          <button className="flex items-center px-6 py-3 text-sm font-semibold text-day bg-purple-500 rounded-full space-x-2">
-            <span>Add New Manager</span>
-            <PlusIcon className="w-4 h-4 stroke-[3px] stroke-day" />
+          <button
+            className="flex items-center px-6 py-3 text-sm font-semibold text-day bg-purple-500 rounded-full space-x-2"
+            onClick={addManager}
+          >
+            <span>Add Manager</span>
           </button>
         </div>
         <table className="w-full table-auto">

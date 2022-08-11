@@ -4,7 +4,7 @@ import { formatDateTime } from 'utils/formatDateTime'
 
 const Screenings = ({ screenings }: ScreeningsProps) => {
   return (
-    <article className="lg:col-span-12 p-8 border border-solid border-gray-200 rounded-3xl shadow-lg space-y-6">
+    <article className="lg:col-span-12 p-8 bg-white border border-solid border-gray-200 rounded-3xl shadow-lg space-y-6">
       <div className="flex items-center justify-between pb-5 border-b border-solid border-gray-200">
         <span className="font-semibold">Scheduled Screenings</span>
         <Link href="/">
