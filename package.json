@@ -25,6 +25,7 @@
     "autoprefixer": "^10.4.8",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4",
+    "next-plausible": "^3.2.0",
     "postcss": "^8.4.14",
     "prisma": "^4.1.1",
     "react-hook-form": "^7.34.0",
