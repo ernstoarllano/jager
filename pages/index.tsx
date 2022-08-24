@@ -1,36 +1,12 @@
-import Companies from 'components/Companies'
 import Dashboard from 'components/Dashboard'
-import Lists from 'components/Lists'
-import Managers from 'components/Managers'
-import Recruiters from 'components/Recruiters'
-import Roles from 'components/Roles'
-import Screenings from 'components/Screenings'
-import Stat from 'components/Stat'
-import Stats from 'components/Stats'
-import { HomeProps } from 'interfaces/Pages'
-import { GetStaticProps } from 'next'
+import Welcome from 'components/dashboard/Welcome'
 import Head from 'next/head'
-import { getCompanies } from 'services/getCompanies'
-import { getEliminatedJobs } from 'services/getEliminatedJobs'
-import { getManagers } from 'services/getManagers'
-import { getRecruiters } from 'services/getRecruiters'
-import { getRoles } from 'services/getRoles'
-import { getScreenings } from 'services/getScreenings'
-import { getTotalApplications } from 'services/getTotalApplications'
-import { getTotalInterviews } from 'services/getTotalInterviews'
-import { getTotalScreenings } from 'services/getTotalScreenings'
+import useSWR from 'swr'
+import { fetcher } from 'utils/dataFetcher'
 
-const Home = ({
-  totalEliminated,
-  totalScreenings,
-  totalInterviews,
-  totalApplications,
-  roles,
-  screenings,
-  companies,
-  recruiters,
-  managers,
-}: HomeProps) => {
+const Home = () => {
+  const { data, error } = useSWR('/api/stats', fetcher)
+
   return (
     <>
       <Head>
@@ -41,55 +17,10 @@ const Home = ({
         <meta property="og:image:height" content="485" />
       </Head>
       <Dashboard>
-        <Stats>
-          <Stat title="Eliminated" count={totalEliminated} />
-          <Stat title="Screenings" count={totalScreenings} />
-          <Stat title="Interviews" count={totalInterviews} />
-          <Stat title="Applications" count={totalApplications} />
-        </Stats>
-        <Roles roles={roles} />
-        <Lists>
-          <Screenings screenings={screenings} />
-          <Companies companies={companies} />
-          <Recruiters recruiters={recruiters} />
-          <Managers managers={managers} />
-        </Lists>
+        <Welcome data={data} error={error} />
       </Dashboard>
     </>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  try {
-    const { totalEliminated } = await getEliminatedJobs()
-    const { totalScreenings } = await getTotalScreenings()
-    const { totalInterviews } = await getTotalInterviews()
-    const { totalApplications } = await getTotalApplications()
-    const { roles } = await getRoles()
-    const { screenings } = await getScreenings()
-    const { companies } = await getCompanies()
-    const { recruiters } = await getRecruiters()
-    const { managers } = await getManagers()
-
-    return {
-      props: {
-        totalEliminated,
-        totalScreenings,
-        totalInterviews,
-        totalApplications,
-        roles,
-        screenings,
-        companies,
-        recruiters,
-        managers,
-      },
-      revalidate: 86400,
-    }
-  } catch (err) {
-    console.error(err)
-
-    throw err
-  }
 }
 
 export default Home

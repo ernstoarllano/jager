@@ -1,9 +1,4 @@
-import {
-  BriefcaseIcon,
-  OfficeBuildingIcon,
-  TemplateIcon,
-  UserGroupIcon,
-} from '@heroicons/react/outline'
+import { TemplateIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -21,26 +16,6 @@ const Nav = () => {
       title: 'Dashboard',
       icon: <TemplateIcon />,
       url: '/',
-    },
-    {
-      title: 'Jobs',
-      icon: <BriefcaseIcon />,
-      url: '/jobs',
-    },
-    {
-      title: 'Companies',
-      icon: <OfficeBuildingIcon />,
-      url: '/companies',
-    },
-    {
-      title: 'Recruiters',
-      icon: <UserGroupIcon />,
-      url: '/recruiters',
-    },
-    {
-      title: 'Managers',
-      icon: <UserGroupIcon />,
-      url: '/managers',
     },
   ]
 
