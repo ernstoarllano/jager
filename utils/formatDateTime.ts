@@ -1,4 +1,6 @@
-export const formatDateTime = (iso: string) => {
+export const formatDateTime = (iso: string = '') => {
+  if (!iso) return 'N/A'
+
   const date = new Date(iso).toLocaleString('default', {
     dateStyle: 'long',
   })

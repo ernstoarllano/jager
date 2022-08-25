@@ -8,7 +8,6 @@ import { formatRole } from 'utils/formateRole'
 import { getCompanyId } from 'utils/getCompanyId'
 
 const Recent = ({ recent }: RecentProps) => {
-  console.log(recent)
   return (
     <Card>
       <h3 className="mb-8 text-lg font-regular">Recent Applications</h3>

@@ -3,11 +3,11 @@ import Chart from 'components/dashboard/widgets/Chart'
 import Count from 'components/dashboard/widgets/Count'
 import Recent from 'components/dashboard/widgets/Recent'
 import Schedule from 'components/dashboard/widgets/Schedule'
-import WelcomeSkeleton from 'components/skeletons/WelcomeSkeleton'
+import WelcomeLoader from 'components/loaders/WelcomeLoader'
 import { WelcomeProps } from 'interfaces/interfaces'
 
 const Welcome = ({ data, error }: WelcomeProps) => {
-  if (!data) return <WelcomeSkeleton />
+  if (!data) return <WelcomeLoader />
   if (error) return <p>Error!</p>
 
   return (

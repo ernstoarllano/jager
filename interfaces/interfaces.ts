@@ -62,3 +62,23 @@ export interface WelcomeProps {
 export interface RecentProps {
   recent: Job[]
 }
+
+export interface CountProps {
+  text: string
+  count: number
+}
+
+export interface ChartProps {
+  interviews: number
+  applied: number
+  eliminated: number
+}
+
+export interface ScheduleProps {
+  upcoming: Interview[]
+}
+
+export interface Interviewer {
+  firstName?: string
+  lastName?: string
+}

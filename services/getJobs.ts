@@ -51,6 +51,7 @@ export const getJobs = async () => {
         interviewed: true,
         eliminated: true,
       },
+      take: 5,
     })
 
     return { jobs, applied, eliminated, recent }

@@ -1,6 +1,7 @@
 import Card from 'components/Card'
+import { CountProps } from 'interfaces/interfaces'
 
-const Count = ({ text, count }: any) => {
+const Count = ({ text, count }: CountProps) => {
   return (
     <Card>
       <h3 className="mb-4 text-xl font-light">{text}</h3>

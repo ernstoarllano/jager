@@ -1,9 +1,10 @@
 import Card from 'components/Card'
+import { ChartProps } from 'interfaces/interfaces'
 import Link from 'next/link'
 import { getPercentage } from 'utils/getPercentage'
 import { VictoryPie } from 'victory'
 
-const Chart = ({ interviews, applied, eliminated }: any) => {
+const Chart = ({ interviews, applied, eliminated }: ChartProps) => {
   return (
     <Card>
       <h3 className="mb-4 text-xl font-light">Jobs Status</h3>

@@ -3,7 +3,8 @@ import { getCompany } from 'services/getCompany'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { company } = await getCompany(1)
+    const { id } = req.query
+    const { company } = await getCompany(parseInt(id as string))
 
     res.status(200).json(company)
   } catch (err) {
