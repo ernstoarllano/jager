@@ -2,29 +2,30 @@ import { prisma } from 'lib/prisma'
 
 export const getInterviews = async () => {
   try {
+    // Return count of all interviews
     const interviews = await prisma.job.count({
       where: {
-        OR: [{ screened: true }, { interviewed: true }],
+        OR: [{ screenedOn: { not: null } }, { interviewedOn: { not: null } }],
       },
     })
 
+    // Return upcomming interviews
     const now = new Date()
     const upcoming = await prisma.job.findMany({
+      orderBy: {
+        interviewedOn: 'asc',
+      },
       where: {
         OR: [
           {
-            screened: false,
             screenedOn: {
-              gt: new Date(now.setDate(now.getDate() + 1)),
+              gte: new Date(now.setDate(now.getDate() + 1)).toISOString(),
             },
-            eliminated: false,
           },
           {
-            interviewed: false,
             interviewedOn: {
-              gt: new Date(now.setDate(now.getDate() + 1)),
+              gte: new Date(now.setDate(now.getDate() + 1)).toISOString(),
             },
-            eliminated: false,
           },
         ],
       },
@@ -32,50 +33,13 @@ export const getInterviews = async () => {
         id: true,
         company: true,
         recruiter: true,
+        interviewer: true,
         role: true,
         screenedOn: true,
         interviewedOn: true,
       },
+      take: 3,
     })
-
-    const upcomingScreenings = await prisma.job.findMany({
-      where: {
-        screened: false,
-        screenedOn: {
-          not: null,
-        },
-        eliminated: false,
-      },
-      select: {
-        id: true,
-        company: true,
-        recruiter: true,
-        role: true,
-        screenedOn: true,
-      },
-    })
-
-    const upcomingInterivews = await prisma.job.findMany({
-      orderBy: {
-        interviewedOn: 'asc',
-      },
-      where: {
-        interviewed: false,
-        interviewedOn: {
-          not: null,
-        },
-        eliminated: false,
-      },
-      select: {
-        id: true,
-        company: true,
-        manager: true,
-        role: true,
-        interviewedOn: true,
-      },
-    })
-
-    //const upcoming = [...upcomingScreenings, ...upcomingInterivews]
 
     return { interviews, upcoming }
   } catch (err) {

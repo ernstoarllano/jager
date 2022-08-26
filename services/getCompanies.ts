@@ -1,12 +1,12 @@
 import { prisma } from 'lib/prisma'
 
-export const getCompanies = async (take: number = 6) => {
+export const getCompanies = async () => {
   try {
     const companies = await prisma.company.findMany({
-      orderBy: {
-        name: 'asc',
+      select: {
+        id: true,
+        name: true,
       },
-      take: take,
     })
 
     return { companies }

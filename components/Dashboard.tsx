@@ -1,7 +1,7 @@
 import Header from 'components/Header'
 import Logo from 'components/Logo'
 import Nav from 'components/Nav'
-import { DashboardProps } from 'interfaces/Dashboard'
+import { DashboardProps } from 'interfaces/interfaces'
 
 const Dashboard = ({ children }: DashboardProps) => {
   return (

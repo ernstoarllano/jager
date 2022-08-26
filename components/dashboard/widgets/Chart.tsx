@@ -7,7 +7,7 @@ import { VictoryPie } from 'victory'
 const Chart = ({ interviews, applied, eliminated }: ChartProps) => {
   return (
     <Card>
-      <h3 className="mb-4 text-xl font-light">Jobs Status</h3>
+      <h3>Jobs Status</h3>
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
         <div className="order-2 lg:order-1 lg:w-2/3">
           <svg viewBox="0 0 400 400">
@@ -60,10 +60,8 @@ const Chart = ({ interviews, applied, eliminated }: ChartProps) => {
           </div>
         </div>
       </div>
-      <Link href="/">
-        <a className="mt-4 text-sm font-medium text-purple-700">
-          View All Jobs
-        </a>
+      <Link href="/job/add">
+        <a className="mt-4 text-sm font-medium text-purple-700">Add Job</a>
       </Link>
     </Card>
   )

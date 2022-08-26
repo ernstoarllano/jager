@@ -15,9 +15,9 @@ interface Job {
   company: Company
   salary: number
   appliedOn: string
-  screened: boolean
-  interviewed: boolean
-  eliminated: boolean
+  screenedOn: string
+  interviewedOn: string
+  eliminatedOn: string
 }
 
 interface Recruiter {
@@ -25,22 +25,20 @@ interface Recruiter {
   firstName: string
   lastName: string
   linkedIn: string
-  positiveExperience: boolean
 }
 
-interface Manager {
+interface Interviewer {
   id: number
   firstName: string
   lastName: string
   linkedIn: string
-  positiveExperience: boolean
 }
 
 interface Interview {
   id: number
   company: Company
   recruiter?: Recruiter
-  manager?: Manager
+  interviewer?: Interviewer
   role: Role
   screenedOn?: string
   interviewedOn?: string
@@ -52,6 +50,10 @@ interface WelcomeData {
   interviews: number
   recent: Job[]
   upcoming: Interview[]
+}
+
+export interface DashboardProps {
+  children?: React.ReactNode
 }
 
 export interface WelcomeProps {
@@ -78,7 +80,14 @@ export interface ScheduleProps {
   upcoming: Interview[]
 }
 
-export interface Interviewer {
-  firstName?: string
-  lastName?: string
+export interface JobFields {
+  appliedOn: string
+  roleId: number
+  companyId: number
+  recruiterId?: number
+  interviewerId?: number
+  salary?: number
+  screenedOn?: string
+  interviewedOn?: string
+  eliminatedOn?: string
 }

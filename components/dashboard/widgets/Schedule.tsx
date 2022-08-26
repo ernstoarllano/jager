@@ -7,11 +7,10 @@ import { formatInterviewer } from 'utils/formatInterviewer'
 import { getCompanyId } from 'utils/getCompanyId'
 
 const Schedule = ({ upcoming }: ScheduleProps) => {
-  console.log(upcoming)
   return (
     <Card>
-      <h3 className="mb-8 text-xl font-light">Upcoming Interviews</h3>
-      {upcoming && (
+      <h3>Upcoming Interviews</h3>
+      {upcoming ? (
         <div className="space-y-2">
           {upcoming.map((interview) => (
             <div
@@ -19,13 +18,11 @@ const Schedule = ({ upcoming }: ScheduleProps) => {
               className="flex items-center justify-between p-5 rounded-2xl even:bg-gray-50"
             >
               <div className="space-y-1">
-                {interview.recruiter && interview.manager && (
-                  <span className="block font-medium">
-                    {formatInterviewer(
-                      interview.recruiter || interview.manager
-                    )}
-                  </span>
-                )}
+                <span className="block font-medium">
+                  {formatInterviewer(
+                    interview.interviewer || interview.recruiter
+                  )}
+                </span>
                 <span className="block text-sm text-purple-700">
                   <Link href={`/company/${getCompanyId(interview.company)}`}>
                     <a>{formatCompany(interview.company)}</a>
@@ -34,15 +31,17 @@ const Schedule = ({ upcoming }: ScheduleProps) => {
               </div>
               <time
                 className="font-medium text-purple-700"
-                dateTime={interview.screenedOn || interview.interviewedOn}
+                dateTime={interview.interviewedOn || interview.screenedOn}
               >
                 {formatDateTime(
-                  interview.screenedOn || interview.interviewedOn
+                  interview.interviewedOn || interview.screenedOn
                 )}
               </time>
             </div>
           ))}
         </div>
+      ) : (
+        <p>There are no scheduled interviews.</p>
       )}
     </Card>
   )

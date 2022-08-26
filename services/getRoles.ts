@@ -6,7 +6,6 @@ export const getRoles = async () => {
       select: {
         id: true,
         name: true,
-        _count: true,
       },
     })
 

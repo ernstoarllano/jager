@@ -11,12 +11,12 @@ export const getJobs = async () => {
         id: true,
         role: true,
         recruiter: true,
-        manager: true,
+        interviewer: true,
         company: true,
         salary: true,
         screenedOn: true,
         interviewedOn: true,
-        eliminated: true,
+        eliminatedOn: true,
       },
     })
 
@@ -26,7 +26,9 @@ export const getJobs = async () => {
     // Return count of all jobs eliminated
     const eliminated = await prisma.job.count({
       where: {
-        eliminated: true,
+        eliminatedOn: {
+          not: null,
+        },
       },
     })
 
@@ -38,7 +40,7 @@ export const getJobs = async () => {
       },
       where: {
         appliedOn: {
-          gt: new Date(now.setDate(now.getDate() - 14)),
+          gte: new Date(now.setDate(now.getDate() - 14)),
         },
       },
       select: {
@@ -47,9 +49,9 @@ export const getJobs = async () => {
         company: true,
         salary: true,
         appliedOn: true,
-        screened: true,
-        interviewed: true,
-        eliminated: true,
+        screenedOn: true,
+        interviewedOn: true,
+        eliminatedOn: true,
       },
       take: 5,
     })

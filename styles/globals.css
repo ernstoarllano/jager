@@ -6,6 +6,18 @@
   body {
     @apply font-inter font-normal text-night text-render-legibility bg-gray-50;
   }
+
+  h2 {
+    @apply text-2xl font-bold;
+  }
+
+  h3 {
+    @apply mb-4 text-xl text-gray-600;
+  }
+
+  p {
+    @apply font-light text-gray-500;
+  }
 }
 
 @layer components {
@@ -31,17 +43,6 @@
 
   .nav-item:hover svg {
     @apply stroke-purple-500;
-  }
-  .table-head {
-    @apply py-5 font-semibold text-dusk;
-  }
-
-  .table-body {
-    @apply font-light text-gray-500 text-left;
-  }
-
-  .table-data {
-    @apply py-5;
   }
 
   .status {

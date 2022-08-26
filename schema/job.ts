@@ -2,15 +2,15 @@ import * as yup from 'yup'
 
 const jobSchema = yup
   .object({
-    role: yup.string().required(),
-    recruiter: yup.string(),
-    manager: yup.string(),
-    company: yup.string().required(),
-    salary: yup.number(),
     appliedOn: yup.date().required(),
-    screenedOn: yup.date(),
-    interviewOn: yup.date(),
-    eliminated: yup.boolean().required(),
+    roleId: yup.number().required(),
+    companyId: yup.number().required(),
+    recruiterId: yup.number().optional(),
+    salary: yup.number().optional(),
+    interviewer: yup.string().optional(),
+    screenedOn: yup.date().optional(),
+    interviewedOn: yup.date().optional(),
+    eliminatedOn: yup.date().optional(),
   })
   .required()
 

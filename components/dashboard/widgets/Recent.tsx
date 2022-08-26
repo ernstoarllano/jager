@@ -10,7 +10,7 @@ import { getCompanyId } from 'utils/getCompanyId'
 const Recent = ({ recent }: RecentProps) => {
   return (
     <Card>
-      <h3 className="mb-8 text-lg font-regular">Recent Applications</h3>
+      <h3>Recent Applications</h3>
       {recent && (
         <div className="space-y-2">
           {recent.map((job) => (
