@@ -1,17 +1,28 @@
 import * as yup from 'yup'
 
-const jobSchema = yup
-  .object({
-    appliedOn: yup.date().required(),
-    roleId: yup.number().required(),
-    companyId: yup.number().required(),
-    recruiterId: yup.number().optional(),
-    salary: yup.number().optional(),
-    interviewer: yup.string().optional(),
-    screenedOn: yup.date().optional(),
-    interviewedOn: yup.date().optional(),
-    eliminatedOn: yup.date().optional(),
-  })
-  .required()
-
-export default jobSchema
+export const newJob = yup.object().shape({
+  appliedOn: yup.date().required(),
+  roleId: yup.number().required(),
+  companyId: yup.number().required(),
+  recruiterId: yup
+    .number()
+    .nullable(true)
+    .transform((value) => value || null),
+  salary: yup.number().required(),
+  interviewerId: yup
+    .number()
+    .nullable(true)
+    .transform((value) => value || null),
+  screenedOn: yup
+    .date()
+    .nullable(true)
+    .transform((curr, orig) => (orig === '' ? null : curr)),
+  interviewedOn: yup
+    .date()
+    .nullable(true)
+    .transform((curr, orig) => (orig === '' ? null : curr)),
+  eliminatedOn: yup
+    .date()
+    .nullable(true)
+    .transform((curr, orig) => (orig === '' ? null : curr)),
+})

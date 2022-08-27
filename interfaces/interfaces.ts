@@ -1,7 +1,8 @@
 interface Company {
   id: number
   name: string
-  url: string
+  website: string
+  logo: string
 }
 
 interface Role {
@@ -80,14 +81,20 @@ export interface ScheduleProps {
   upcoming: Interview[]
 }
 
+export interface CompanyFields {
+  name: string
+  website: number | null
+  logo: string | null
+}
+
 export interface JobFields {
   appliedOn: string
   roleId: number
   companyId: number
-  recruiterId?: number
-  interviewerId?: number
-  salary?: number
-  screenedOn?: string
-  interviewedOn?: string
-  eliminatedOn?: string
+  recruiterId: number | null
+  interviewerId: number | null
+  salary: number
+  screenedOn: string | null
+  interviewedOn: string | null
+  eliminatedOn: string | null
 }
