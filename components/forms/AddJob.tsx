@@ -98,11 +98,12 @@ const AddJob = () => {
                   {...register('roleId', { required: true })}
                 >
                   <option defaultValue="">Select a role</option>
-                  {roles.map((role: Role) => (
-                    <option key={role.id} value={role.id}>
-                      {role.name}
-                    </option>
-                  ))}
+                  {roles &&
+                    roles.map((role: Role) => (
+                      <option key={role.id} value={role.id}>
+                        {role.name}
+                      </option>
+                    ))}
                 </select>
                 {errors.roleId && (
                   <p className="text-sm text-red-400">
@@ -119,11 +120,12 @@ const AddJob = () => {
                   {...register('companyId', { required: true })}
                 >
                   <option defaultValue="">Select a company</option>
-                  {companies.map((company: Company) => (
-                    <option key={company.id} value={company.id}>
-                      {company.name}
-                    </option>
-                  ))}
+                  {companies &&
+                    companies.map((company: Company) => (
+                      <option key={company.id} value={company.id}>
+                        {company.name}
+                      </option>
+                    ))}
                 </select>
                 <span className="block text-xs font-light text-gray-500">
                   {`If company isn't listed add a new company above`}
