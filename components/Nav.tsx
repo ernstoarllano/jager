@@ -1,4 +1,4 @@
-import { TemplateIcon } from '@heroicons/react/outline'
+import { RectangleGroupIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -14,7 +14,7 @@ const Nav = () => {
   const pages: NavPageProps[] = [
     {
       title: 'Dashboard',
-      icon: <TemplateIcon />,
+      icon: <RectangleGroupIcon />,
       url: '/',
     },
   ]
