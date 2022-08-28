@@ -105,7 +105,8 @@ const AddJob = () => {
                   {...register('roleId', { required: true })}
                 >
                   <option defaultValue="">Select a role</option>
-                  {roles.length > 0 &&
+                  {roles &&
+                    roles.length > 0 &&
                     roles.map((role: Role) => (
                       <option key={role.id} value={role.id}>
                         {role.name}
@@ -130,7 +131,8 @@ const AddJob = () => {
                   {...register('companyId', { required: true })}
                 >
                   <option defaultValue="">Select a company</option>
-                  {companies.length > 0 &&
+                  {companies &&
+                    companies.length > 0 &&
                     companies.map((company: Company) => (
                       <option key={company.id} value={company.id}>
                         {company.name}

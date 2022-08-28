@@ -10,7 +10,7 @@ const Schedule = ({ upcoming }: ScheduleProps) => {
   return (
     <Card>
       <h3>Upcoming Interviews</h3>
-      {upcoming.length > 0 ? (
+      {upcoming && upcoming.length > 0 ? (
         <div className="space-y-2">
           {upcoming.map((interview) => (
             <div
