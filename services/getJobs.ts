@@ -40,7 +40,7 @@ export const getJobs = async () => {
       },
       where: {
         appliedOn: {
-          gte: new Date(now.setDate(now.getDate() - 14)),
+          gte: new Date(now.setDate(now.getDate() - 30)),
         },
       },
       select: {

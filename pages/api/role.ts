@@ -6,7 +6,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const data = JSON.parse(req.body)
-    const save = await prisma.job.create({ data })
+    const save = await prisma.role.create({ data })
 
     res.status(200).json(save)
   } catch (err) {

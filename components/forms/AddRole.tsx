@@ -1,25 +1,25 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { CompanyFields } from 'interfaces/interfaces'
+import { RoleFields } from 'interfaces/interfaces'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { newCompany } from 'schema/company'
+import { newRole } from 'schema/role'
 
-const AddCompany = () => {
+const AddRole = () => {
   const {
     register,
     reset,
     handleSubmit,
     formState: {
-      errors: companyErrors,
+      errors: roleErrors,
       isSubmitting,
-      isSubmitSuccessful: companySuccessful,
+      isSubmitSuccessful: roleSuccessful,
     },
-  } = useForm<CompanyFields>({
-    resolver: yupResolver(newCompany),
+  } = useForm<RoleFields>({
+    resolver: yupResolver(newRole),
   })
 
-  const onSubmit: SubmitHandler<CompanyFields> = async (data) => {
+  const onSubmit: SubmitHandler<RoleFields> = async (data) => {
     try {
-      const save = await fetch('/api/company', {
+      const save = await fetch('/api/role', {
         method: 'POST',
         body: JSON.stringify(data),
       })
@@ -36,13 +36,13 @@ const AddCompany = () => {
     <section className="p-10 space-y-12">
       <div className="lg:grid lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-4">
-          <h2 className="mb-2">Company</h2>
+          <h2 className="mb-2">Role</h2>
           <p className="text-sm">
-            Enter as much information as you can about the company.
+            Enter as much information as you can about the role.
           </p>
         </div>
         <div className="lg:col-span-8 space-y-6">
-          {companySuccessful && (
+          {roleSuccessful && (
             <div className="rounded-md bg-green-50 p-4">
               <div className="flex">
                 <div className="flex-shrink-0">
@@ -61,7 +61,7 @@ const AddCompany = () => {
                 </div>
                 <div className="ml-3">
                   <p className="text-sm font-medium text-green-800">
-                    Company, was added successfully.
+                    Role, was added successfully.
                   </p>
                 </div>
               </div>
@@ -74,44 +74,24 @@ const AddCompany = () => {
             <div className="space-y-6">
               <div className="flex flex-col space-y-2">
                 <label className="inline-block text-sm font-medium text-gray-600">
-                  Name
+                  Role
                 </label>
                 <input
                   className="w-full h-9 p-2 text-sm border border-solid border-gray-300 rounded-md"
                   type="text"
                   {...register('name', { required: true })}
                 />
-                {companyErrors.name && (
+                {roleErrors.name && (
                   <p className="text-sm text-red-800">
-                    Please enter the company name.
+                    Please enter the role name.
                   </p>
                 )}
-              </div>
-              <div className="flex flex-col space-y-2">
-                <label className="inline-block text-sm font-medium text-gray-600">
-                  Website
-                </label>
-                <input
-                  className="w-full h-9 p-2 text-sm border border-solid border-gray-300 rounded-md"
-                  type="text"
-                  {...register('website')}
-                />
-              </div>
-              <div className="flex flex-col space-y-2">
-                <label className="inline-block text-sm font-medium text-gray-600">
-                  Logo
-                </label>
-                <input
-                  className="w-full h-9 p-2 text-sm border border-solid border-gray-300 rounded-md"
-                  type="file"
-                  {...register('logo')}
-                />
               </div>
               <button
                 className="flex items-center px-6 py-3 text-sm font-medium text-day bg-purple-500 rounded-full cursor-pointer"
                 disabled={isSubmitting}
               >
-                Add Company
+                Add Role
               </button>
             </div>
           </form>
@@ -121,4 +101,4 @@ const AddCompany = () => {
   )
 }
 
-export default AddCompany
+export default AddRole

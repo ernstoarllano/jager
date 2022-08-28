@@ -81,20 +81,25 @@ export interface ScheduleProps {
   upcoming: Interview[]
 }
 
+export interface StatusProps {
+  screenedOn?: string
+  interviewedOn?: string
+  eliminatedOn?: string
+}
+
 export interface CompanyFields {
   name: string
   website: number | null
-  logo: string | null
+  logo: FileList | null
+}
+
+export interface RoleFields {
+  name: string
 }
 
 export interface JobFields {
   appliedOn: string
   roleId: number
   companyId: number
-  recruiterId: number | null
-  interviewerId: number | null
   salary: number
-  screenedOn: string | null
-  interviewedOn: string | null
-  eliminatedOn: string | null
 }

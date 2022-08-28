@@ -61,7 +61,9 @@ const Chart = ({ interviews, applied, eliminated }: ChartProps) => {
         </div>
       </div>
       <Link href="/job/add">
-        <a className="mt-4 text-sm font-medium text-purple-700">Add Job</a>
+        <a className="self-start mt-4 text-sm font-medium text-purple-700">
+          Add Job
+        </a>
       </Link>
     </Card>
   )

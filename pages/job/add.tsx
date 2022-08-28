@@ -1,6 +1,7 @@
 import Dashboard from 'components/Dashboard'
 import AddCompany from 'components/forms/AddCompany'
 import AddJob from 'components/forms/AddJob'
+import AddRole from 'components/forms/AddRole'
 import Head from 'next/head'
 
 const Add = () => {
@@ -14,8 +15,9 @@ const Add = () => {
         <meta property="og:image:height" content="485" />
       </Head>
       <Dashboard>
-        <AddCompany />
         <AddJob />
+        <AddCompany />
+        <AddRole />
       </Dashboard>
     </>
   )

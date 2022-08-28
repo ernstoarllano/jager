@@ -1,5 +1,7 @@
 import * as yup from 'yup'
 
+const FORMATS = ['image/jpg', 'image/jpeg', 'image/png', 'image/webp']
+
 export const newCompany = yup.object().shape({
   name: yup.string().required(),
   website: yup
@@ -8,7 +10,12 @@ export const newCompany = yup.object().shape({
     .nullable()
     .transform((value) => value || null),
   logo: yup
-    .string()
+    .mixed()
     .nullable()
-    .transform((value) => value || null),
+    .test(
+      'type',
+      'supported image formats are jpg, jpeg, png and webp',
+      (value) => !value || FORMATS.includes(value.type)
+    )
+    .transform((value) => value[0].name || null),
 })

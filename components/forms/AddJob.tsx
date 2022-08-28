@@ -10,8 +10,13 @@ import { fetcher } from 'utils/dataFetcher'
 const AddJob = () => {
   const {
     register,
+    reset,
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: {
+      errors: jobErrors,
+      isSubmitting,
+      isSubmitSuccessful: jobSuccesful,
+    },
   } = useForm<JobFields>({
     resolver: yupResolver(newJob),
   })
@@ -22,6 +27,8 @@ const AddJob = () => {
         method: 'POST',
         body: JSON.stringify(data),
       })
+
+      reset()
 
       return await save.json()
     } catch (err) {
@@ -44,7 +51,7 @@ const AddJob = () => {
           </p>
         </div>
         <div className="lg:col-span-8 space-y-6">
-          {isSubmitSuccessful && (
+          {jobSuccesful && (
             <div className="rounded-md bg-green-50 p-4">
               <div className="flex">
                 <div className="flex-shrink-0">
@@ -83,8 +90,8 @@ const AddJob = () => {
                   type="date"
                   {...register('appliedOn', { required: true })}
                 />
-                {errors.appliedOn && (
-                  <p className="text-sm text-red-400">
+                {jobErrors.appliedOn && (
+                  <p className="text-sm text-red-800">
                     Please enter the date the job was applied on.
                   </p>
                 )}
@@ -105,8 +112,11 @@ const AddJob = () => {
                       </option>
                     ))}
                 </select>
-                {errors.roleId && (
-                  <p className="text-sm text-red-400">
+                <span className="block text-xs font-light text-gray-500">
+                  {`If role isn't listed add a new role below`}
+                </span>
+                {jobErrors.roleId && (
+                  <p className="text-sm text-red-800">
                     Please enter the role for the job.
                   </p>
                 )}
@@ -128,24 +138,13 @@ const AddJob = () => {
                     ))}
                 </select>
                 <span className="block text-xs font-light text-gray-500">
-                  {`If company isn't listed add a new company above`}
+                  {`If company isn't listed add a new company below`}
                 </span>
-                {errors.companyId && (
-                  <p className="text-sm text-red-400">
+                {jobErrors.companyId && (
+                  <p className="text-sm text-red-800">
                     Please enter the company for the job.
                   </p>
                 )}
-              </div>
-              <div className="flex flex-col space-y-2">
-                <label className="inline-block text-sm font-medium text-gray-600">
-                  Recruiter
-                </label>
-                <select
-                  className="w-full h-9 p-2 text-sm bg-white border border-solid border-gray-300 rounded-md"
-                  {...register('recruiterId')}
-                >
-                  <option defaultValue="">Select a recruiter</option>
-                </select>
               </div>
               <div className="flex flex-col space-y-2">
                 <label className="inline-block text-sm font-medium text-gray-600">
@@ -156,52 +155,11 @@ const AddJob = () => {
                   type="number"
                   {...register('salary')}
                 />
-                {errors.salary && (
-                  <p className="text-sm text-red-400">
+                {jobErrors.salary && (
+                  <p className="text-sm text-red-800">
                     Please enter the salary for the job.
                   </p>
                 )}
-              </div>
-              <div className="flex flex-col space-y-2">
-                <label className="inline-block text-sm font-medium text-gray-600">
-                  Interviewer
-                </label>
-                <select
-                  className="w-full h-9 p-2 text-sm bg-white border border-solid border-gray-300 rounded-md"
-                  {...register('interviewerId')}
-                >
-                  <option defaultValue="">Select a interviewer</option>
-                </select>
-              </div>
-              <div className="flex flex-col space-y-2">
-                <label className="inline-block text-sm font-medium text-gray-600">
-                  Screened On
-                </label>
-                <input
-                  className="w-full h-9 p-2 text-sm border border-solid border-gray-300 rounded-md"
-                  type="date"
-                  {...register('screenedOn')}
-                />
-              </div>
-              <div className="flex flex-col space-y-2">
-                <label className="inline-block text-sm font-medium text-gray-600">
-                  Interviewd On
-                </label>
-                <input
-                  className="w-full h-9 p-2 text-sm border border-solid border-gray-300 rounded-md"
-                  type="date"
-                  {...register('interviewedOn')}
-                />
-              </div>
-              <div className="flex flex-col space-y-2">
-                <label className="inline-block text-sm font-medium text-gray-600">
-                  Eliminated On
-                </label>
-                <input
-                  className="w-full h-9 p-2 text-sm border border-solid border-gray-300 rounded-md"
-                  type="date"
-                  {...register('eliminatedOn')}
-                />
               </div>
               <button
                 className="flex items-center px-6 py-3 text-sm font-medium text-day bg-purple-500 rounded-full cursor-pointer"

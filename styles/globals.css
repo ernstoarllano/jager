@@ -46,21 +46,21 @@
   }
 
   .status {
-    @apply inline-block px-4 py-2 text-sm text-center border border-solid rounded-full;
+    @apply inline-flex px-3 py-1 text-xs font-medium rounded-full;
   }
 
   .status.is-awaiting,
   .status.is-reviewing,
   .status.is-waiting {
-    @apply text-amber-400 border-amber-400;
+    @apply text-amber-800 bg-amber-100;
   }
 
   .status.is-eliminated {
-    @apply text-red-400 border-red-400;
+    @apply text-red-800 bg-red-100;
   }
 
   .status.is-hired {
-    @apply text-green-400 border-green-400;
+    @apply text-green-800 bg-green-100;
   }
 }
 

@@ -1,4 +1,5 @@
 import Card from 'components/Card'
+import Status from 'components/Status'
 import { RecentProps } from 'interfaces/interfaces'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -48,11 +49,17 @@ const Recent = ({ recent }: RecentProps) => {
                 </div>
               </div>
               <div className="lg:w-1/4">
-                <span className="block text-base text-gray-500">
+                <span className="block text-sm text-gray-500">
                   {formatDate(job.appliedOn)}
                 </span>
               </div>
-              <div className="lg:w-1/4 lg:text-right"></div>
+              <div className="lg:w-1/4 lg:text-right">
+                <Status
+                  screenedOn={job.screenedOn}
+                  interviewedOn={job.interviewedOn}
+                  eliminatedOn={job.eliminatedOn}
+                />
+              </div>
             </div>
           ))}
         </div>

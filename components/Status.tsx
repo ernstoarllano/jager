@@ -1,16 +1,17 @@
 import classNames from 'classnames'
+import { StatusProps } from 'interfaces/interfaces'
 
-const Status = ({ screened, interviewed, eliminated }: any) => {
+const Status = ({ screenedOn, interviewedOn, eliminatedOn }: StatusProps) => {
   const classes = classNames({
-    'is-awaiting': !screened && !interviewed && !eliminated,
-    'is-reviewing': screened && !interviewed && !eliminated,
-    'is-waiting': interviewed && !eliminated,
-    'is-eliminated': eliminated,
+    'is-awaiting': !screenedOn && !interviewedOn && !eliminatedOn,
+    'is-reviewing': screenedOn && !interviewedOn && !eliminatedOn,
+    'is-waiting': interviewedOn && !eliminatedOn,
+    'is-eliminated': eliminatedOn,
   })
 
   switch (classes) {
     case 'is-awaiting':
-      return <span className={`status ${classes}`}>In Wait</span>
+      return <span className={`status ${classes}`}>Waiting</span>
     case 'is-reviewing':
       return <span className={`status ${classes}`}>In Review</span>
     case 'is-waiting':

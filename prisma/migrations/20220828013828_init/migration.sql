@@ -68,6 +68,24 @@ CREATE TABLE "_CompanyToInterviewer" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Role_name_key" ON "Role"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Company_name_key" ON "Company"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Company_website_key" ON "Company"("website");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Company_logo_key" ON "Company"("logo");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Recruiter_linkedIn_key" ON "Recruiter"("linkedIn");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Interviewer_linkedIn_key" ON "Interviewer"("linkedIn");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "_CompanyToRecruiter_AB_unique" ON "_CompanyToRecruiter"("A", "B");
 
 -- CreateIndex
