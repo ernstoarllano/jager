@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import Spinner from 'components/Spinner'
 import { RoleFields } from 'interfaces/interfaces'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { newRole } from 'schema/role'
@@ -8,11 +9,7 @@ const AddRole = () => {
     register,
     reset,
     handleSubmit,
-    formState: {
-      errors: roleErrors,
-      isSubmitting,
-      isSubmitSuccessful: roleSuccessful,
-    },
+    formState: { errors, isSubmitting, isSubmitSuccessful },
   } = useForm<RoleFields>({
     resolver: yupResolver(newRole),
   })
@@ -42,7 +39,7 @@ const AddRole = () => {
           </p>
         </div>
         <div className="lg:col-span-8 space-y-6">
-          {roleSuccessful && (
+          {isSubmitSuccessful && (
             <div className="rounded-md bg-green-50 p-4">
               <div className="flex">
                 <div className="flex-shrink-0">
@@ -81,7 +78,7 @@ const AddRole = () => {
                   type="text"
                   {...register('name', { required: true })}
                 />
-                {roleErrors.name && (
+                {errors.name && (
                   <p className="text-sm text-red-800">
                     Please enter the role name.
                   </p>
@@ -91,7 +88,7 @@ const AddRole = () => {
                 className="flex items-center px-6 py-3 text-sm font-medium text-day bg-purple-500 rounded-full cursor-pointer"
                 disabled={isSubmitting}
               >
-                Add Role
+                {isSubmitting ? <Spinner /> : 'Add Role'}
               </button>
             </div>
           </form>

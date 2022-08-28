@@ -23,19 +23,21 @@ const Recent = ({ recent }: RecentProps) => {
             >
               <div className="lg:w-1/2">
                 <div className="flex items-center space-x-3">
-                  <a
-                    className="flex flex-col items-center relative"
-                    href={formatWebsite(job.company)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Image
-                      src={formatLogo(job.company)}
-                      alt={formatCompany(job.company)}
-                      width={40}
-                      height={40}
-                    />
-                  </a>
+                  {job.company.logo && (
+                    <a
+                      className="flex flex-col items-center relative"
+                      href={formatWebsite(job.company)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Image
+                        src={formatLogo(job.company)}
+                        alt={formatCompany(job.company)}
+                        width={40}
+                        height={40}
+                      />
+                    </a>
+                  )}
                   <div>
                     <span className="block font-medium">
                       {formatRole(job.role)}

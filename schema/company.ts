@@ -12,10 +12,5 @@ export const newCompany = yup.object().shape({
   logo: yup
     .mixed()
     .nullable()
-    .test(
-      'type',
-      'supported image formats are jpg, jpeg, png and webp',
-      (value) => !value || FORMATS.includes(value.type)
-    )
-    .transform((value) => value[0].name || null),
+    .transform((value) => (value && value.length ? value[0].name : null)),
 })

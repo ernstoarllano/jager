@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Company, Role } from '@prisma/client'
 import AddJobLoader from 'components/loaders/AddJobLoader'
+import Spinner from 'components/Spinner'
 import { JobFields } from 'interfaces/interfaces'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { newJob } from 'schema/job'
@@ -167,7 +168,7 @@ const AddJob = () => {
                 className="flex items-center px-6 py-3 text-sm font-medium text-day bg-purple-500 rounded-full cursor-pointer"
                 disabled={isSubmitting}
               >
-                Add Job
+                {isSubmitting ? <Spinner /> : 'Add Job'}
               </button>
             </div>
           </form>

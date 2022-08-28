@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import Spinner from 'components/Spinner'
 import { CompanyFields } from 'interfaces/interfaces'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { newCompany } from 'schema/company'
@@ -111,7 +112,7 @@ const AddCompany = () => {
                 className="flex items-center px-6 py-3 text-sm font-medium text-day bg-purple-500 rounded-full cursor-pointer"
                 disabled={isSubmitting}
               >
-                Add Company
+                {isSubmitting ? <Spinner /> : 'Add Company'}
               </button>
             </div>
           </form>
