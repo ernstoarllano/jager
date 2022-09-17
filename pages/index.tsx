@@ -1,11 +1,20 @@
 import Dashboard from 'components/Dashboard'
 import Welcome from 'components/dashboard/Welcome'
+import WelcomeLoader from 'components/loaders/WelcomeLoader'
 import Head from 'next/head'
 import useSWR from 'swr'
 import { fetcher } from 'utils/dataFetcher'
 
 const Home = () => {
   const { data, error } = useSWR('/api/stats', fetcher)
+
+  if (!data)
+    return (
+      <Dashboard>
+        <WelcomeLoader />
+      </Dashboard>
+    )
+  if (error) return <p>Error!</p>
 
   return (
     <>
@@ -17,7 +26,7 @@ const Home = () => {
         <meta property="og:image:height" content="485" />
       </Head>
       <Dashboard>
-        <Welcome data={data} error={error} />
+        <Welcome data={data} />
       </Dashboard>
     </>
   )

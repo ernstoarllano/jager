@@ -4,10 +4,12 @@ import { getJobs } from 'services/getJobs'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { applied, eliminated, recent } = await getJobs()
+    const { applied, eliminated, hired, recent } = await getJobs()
     const { interviews, upcoming } = await getInterviews()
 
-    res.status(200).json({ applied, eliminated, recent, interviews, upcoming })
+    res
+      .status(200)
+      .json({ applied, eliminated, hired, recent, interviews, upcoming })
   } catch (err) {
     res.status(500).json({ message: err })
   }

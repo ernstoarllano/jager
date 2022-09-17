@@ -4,7 +4,8 @@ import Link from 'next/link'
 import { getPercentage } from 'utils/getPercentage'
 import { VictoryPie } from 'victory'
 
-const Chart = ({ interviews, applied, eliminated }: ChartProps) => {
+const Chart = ({ interviews, applied, eliminated, hired }: ChartProps) => {
+  console.log(interviews, applied, eliminated)
   return (
     <Card>
       <h3>Jobs Status</h3>
@@ -15,14 +16,11 @@ const Chart = ({ interviews, applied, eliminated }: ChartProps) => {
               standalone={false}
               width={400}
               height={400}
-              colorScale={['#4ADE80', '#F87171', '#FBBF24']}
+              colorScale={['#FBBF24', '#FB7185', '#4ADE80']}
               data={[
                 { x: 1, y: getPercentage(interviews, applied) },
                 { x: 2, y: getPercentage(eliminated, applied) },
-                {
-                  x: 3,
-                  y: getPercentage(applied - interviews - eliminated, applied),
-                },
+                { x: 2, y: getPercentage(hired, applied) },
               ]}
               innerRadius={110}
               labelRadius={100}
@@ -32,7 +30,7 @@ const Chart = ({ interviews, applied, eliminated }: ChartProps) => {
         </div>
         <div className="order-1 lg:order-2 flex lg:flex-col items-center lg:items-start justify-center lg:justify-start lg:w-1/3 space-x-6 lg:space-x-0 lg:space-y-6">
           <div className="flex items-center space-x-3">
-            <div className="w-4 h-4 bg-green-400 rounded-sm"></div>
+            <div className="w-4 h-4 bg-amber-400 rounded-sm"></div>
             <div className="text-sm">
               <span className="block font-bold">
                 {getPercentage(interviews, applied)}%
@@ -41,7 +39,7 @@ const Chart = ({ interviews, applied, eliminated }: ChartProps) => {
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <div className="w-4 h-4 bg-red-400 rounded-sm"></div>
+            <div className="w-4 h-4 bg-rose-400 rounded-sm"></div>
             <div className="text-sm">
               <span className="block font-bold">
                 {getPercentage(eliminated, applied)}%
@@ -50,12 +48,12 @@ const Chart = ({ interviews, applied, eliminated }: ChartProps) => {
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <div className="w-4 h-4 bg-amber-400 rounded-sm"></div>
+            <div className="w-4 h-4 bg-green-400 rounded-sm"></div>
             <div className="text-sm">
               <span className="block font-bold">
-                {getPercentage(applied - interviews - eliminated, applied)}%
+                {getPercentage(hired, applied)}%
               </span>{' '}
-              Waiting
+              Hired
             </div>
           </div>
         </div>

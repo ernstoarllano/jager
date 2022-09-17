@@ -5,18 +5,18 @@ export const getJobs = async () => {
     // Return all jobs
     const jobs = await prisma.job.findMany({
       orderBy: {
-        id: 'asc',
+        appliedOn: 'asc',
       },
       select: {
         id: true,
         role: true,
-        recruiter: true,
-        interviewer: true,
         company: true,
         salary: true,
+        appliedOn: true,
         screenedOn: true,
         interviewedOn: true,
         eliminatedOn: true,
+        hiredOn: true,
       },
     })
 
@@ -27,6 +27,15 @@ export const getJobs = async () => {
     const eliminated = await prisma.job.count({
       where: {
         eliminatedOn: {
+          not: null,
+        },
+      },
+    })
+
+    // Return count of all jobs hired
+    const hired = await prisma.job.count({
+      where: {
+        hiredOn: {
           not: null,
         },
       },
@@ -52,11 +61,12 @@ export const getJobs = async () => {
         screenedOn: true,
         interviewedOn: true,
         eliminatedOn: true,
+        hiredOn: true,
       },
       take: 5,
     })
 
-    return { jobs, applied, eliminated, recent }
+    return { jobs, applied, eliminated, hired, recent }
   } catch (err) {
     console.error(err)
 

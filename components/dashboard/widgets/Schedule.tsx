@@ -3,7 +3,6 @@ import { ScheduleProps } from 'interfaces/interfaces'
 import Link from 'next/link'
 import { formatCompany } from 'utils/formatCompany'
 import { formatDateTime } from 'utils/formatDateTime'
-import { formatInterviewer } from 'utils/formatInterviewer'
 import { getCompanyId } from 'utils/getCompanyId'
 
 const Schedule = ({ upcoming }: ScheduleProps) => {
@@ -18,11 +17,6 @@ const Schedule = ({ upcoming }: ScheduleProps) => {
               className="flex items-center justify-between p-5 rounded-2xl even:bg-gray-50"
             >
               <div className="space-y-1">
-                <span className="block font-medium">
-                  {formatInterviewer(
-                    interview.interviewer || interview.recruiter
-                  )}
-                </span>
                 <span className="block text-sm text-purple-700">
                   <Link href={`/company/${getCompanyId(interview.company)}`}>
                     <a>{formatCompany(interview.company)}</a>
@@ -65,11 +59,6 @@ const Schedule = ({ upcoming }: ScheduleProps) => {
           </div>
         </div>
       )}
-      <Link href="/">
-        <a className="self-start mt-auto mb-0 text-sm font-medium text-purple-700">
-          Add Interview
-        </a>
-      </Link>
     </Card>
   )
 }

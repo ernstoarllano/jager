@@ -3,13 +3,10 @@ import Chart from 'components/dashboard/widgets/Chart'
 import Count from 'components/dashboard/widgets/Count'
 import Recent from 'components/dashboard/widgets/Recent'
 import Schedule from 'components/dashboard/widgets/Schedule'
-import WelcomeLoader from 'components/loaders/WelcomeLoader'
+
 import { WelcomeProps } from 'interfaces/interfaces'
 
-const Welcome = ({ data, error }: WelcomeProps) => {
-  if (!data) return <WelcomeLoader />
-  if (error) return <p>Error!</p>
-
+const Welcome = ({ data }: WelcomeProps) => {
   return (
     <section className="p-10 space-y-12">
       <WelcomeMessage />
@@ -25,6 +22,7 @@ const Welcome = ({ data, error }: WelcomeProps) => {
             interviews={data.interviews}
             applied={data.applied}
             eliminated={data.eliminated}
+            hired={data.hired}
           />
         </div>
         <div className="lg:col-span-6 lg:row-span-full">

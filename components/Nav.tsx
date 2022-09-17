@@ -1,4 +1,4 @@
-import { RectangleGroupIcon } from '@heroicons/react/24/outline'
+import { BriefcaseIcon, RectangleGroupIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -16,6 +16,11 @@ const Nav = () => {
       title: 'Dashboard',
       icon: <RectangleGroupIcon />,
       url: '/',
+    },
+    {
+      title: 'Jobs',
+      icon: <BriefcaseIcon />,
+      url: '/jobs',
     },
   ]
 

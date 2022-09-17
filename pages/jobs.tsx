@@ -1,22 +1,20 @@
 import Dashboard from 'components/Dashboard'
-import AddCompany from 'components/forms/AddCompany'
-import AddJob from 'components/forms/AddJob'
-import AddRole from 'components/forms/AddRole'
-import AddJobLoader from 'components/loaders/AddJobLoader'
+import WelcomeLoader from 'components/loaders/WelcomeLoader'
+import JobsTable from 'components/tables/Jobs'
 import Head from 'next/head'
 import useSWR from 'swr'
 import { fetcher } from 'utils/dataFetcher'
 
-const Add = () => {
-  const { data: roles } = useSWR('/api/roles', fetcher)
-  const { data: companies } = useSWR('/api/companies', fetcher)
+const Jobs = () => {
+  const { data, error } = useSWR('/api/jobs', fetcher)
 
-  if (!roles || !companies)
+  if (!data)
     return (
       <Dashboard>
-        <AddJobLoader />
+        <WelcomeLoader />
       </Dashboard>
     )
+  if (error) return <p>Error!</p>
 
   return (
     <>
@@ -28,12 +26,10 @@ const Add = () => {
         <meta property="og:image:height" content="485" />
       </Head>
       <Dashboard>
-        <AddJob roles={roles} companies={companies} />
-        <AddCompany />
-        <AddRole />
+        <JobsTable jobs={data} />
       </Dashboard>
     </>
   )
 }
 
-export default Add
+export default Jobs

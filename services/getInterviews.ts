@@ -32,8 +32,6 @@ export const getInterviews = async () => {
       select: {
         id: true,
         company: true,
-        recruiter: true,
-        interviewer: true,
         role: true,
         screenedOn: true,
         interviewedOn: true,

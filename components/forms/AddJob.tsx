@@ -1,30 +1,25 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Company, Role } from '@prisma/client'
-import AddJobLoader from 'components/loaders/AddJobLoader'
-import Spinner from 'components/Spinner'
-import { JobFields } from 'interfaces/interfaces'
+import Alert from 'components/Alert'
+import FormButton from 'components/forms/FormButton'
+import FormWrapper from 'components/forms/FormWrapper'
+import { AddJobFields } from 'interfaces/interfaces'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { newJob } from 'schema/job'
-import useSWR from 'swr'
-import { fetcher } from 'utils/dataFetcher'
 
-const AddJob = () => {
+const AddJob = ({ roles, companies }: any) => {
   const {
     register,
     reset,
     handleSubmit,
-    formState: {
-      errors: jobErrors,
-      isSubmitting,
-      isSubmitSuccessful: jobSuccesful,
-    },
-  } = useForm<JobFields>({
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm<AddJobFields>({
     resolver: yupResolver(newJob),
   })
 
-  const onSubmit: SubmitHandler<JobFields> = async (data) => {
+  const onSubmit: SubmitHandler<AddJobFields> = async (data) => {
     try {
-      const save = await fetch('/api/job', {
+      const save = await fetch('/api/job/add', {
         method: 'POST',
         body: JSON.stringify(data),
       })
@@ -37,11 +32,6 @@ const AddJob = () => {
     }
   }
 
-  const { data: roles } = useSWR('/api/roles', fetcher)
-  const { data: companies } = useSWR('/api/companies', fetcher)
-
-  if (!roles || !companies) return <AddJobLoader />
-
   return (
     <section className="p-10 space-y-12">
       <div className="lg:grid lg:grid-cols-12 lg:gap-8">
@@ -52,35 +42,10 @@ const AddJob = () => {
           </p>
         </div>
         <div className="lg:col-span-8 space-y-6">
-          {jobSuccesful && (
-            <div className="rounded-md bg-green-50 p-4">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-5 w-5 text-green-400"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-green-800">
-                    Job, was added successfully.
-                  </p>
-                </div>
-              </div>
-            </div>
+          {isSubmitSuccessful && (
+            <Alert message="Job, was added successfully." type="success" />
           )}
-          <form
-            className="lg:p-6 lg:bg-white lg:shadow lg:rounded-md"
-            onSubmit={handleSubmit(onSubmit)}
-          >
+          <FormWrapper callBack={handleSubmit(onSubmit)}>
             <div className="space-y-6">
               <div className="flex flex-col space-y-2">
                 <label className="inline-block text-sm font-medium text-gray-600">
@@ -91,7 +56,7 @@ const AddJob = () => {
                   type="date"
                   {...register('appliedOn', { required: true })}
                 />
-                {jobErrors.appliedOn && (
+                {errors.appliedOn && (
                   <p className="text-sm text-red-800">
                     Please enter the date the job was applied on.
                   </p>
@@ -117,7 +82,7 @@ const AddJob = () => {
                 <span className="block text-xs font-light text-gray-500">
                   {`If role isn't listed add a new role below`}
                 </span>
-                {jobErrors.roleId && (
+                {errors.roleId && (
                   <p className="text-sm text-red-800">
                     Please enter the role for the job.
                   </p>
@@ -143,7 +108,7 @@ const AddJob = () => {
                 <span className="block text-xs font-light text-gray-500">
                   {`If company isn't listed add a new company below`}
                 </span>
-                {jobErrors.companyId && (
+                {errors.companyId && (
                   <p className="text-sm text-red-800">
                     Please enter the company for the job.
                   </p>
@@ -158,20 +123,15 @@ const AddJob = () => {
                   type="number"
                   {...register('salary')}
                 />
-                {jobErrors.salary && (
+                {errors.salary && (
                   <p className="text-sm text-red-800">
                     Please enter the salary for the job.
                   </p>
                 )}
               </div>
-              <button
-                className="flex items-center px-6 py-3 text-sm font-medium text-day bg-purple-500 rounded-full cursor-pointer"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? <Spinner /> : 'Add Job'}
-              </button>
+              <FormButton isSubmitting={isSubmitting} text="Add Job" />
             </div>
-          </form>
+          </FormWrapper>
         </div>
       </div>
     </section>

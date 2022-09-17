@@ -12,23 +12,19 @@ datasource db {
 }
 
 model Job {
-  id            Int          @id @default(autoincrement())
-  role          Role         @relation(fields: [roleId], references: [id])
+  id            Int       @id @default(autoincrement())
+  role          Role      @relation(fields: [roleId], references: [id])
   roleId        Int
-  company       Company      @relation(fields: [companyId], references: [id])
+  company       Company   @relation(fields: [companyId], references: [id])
   companyId     Int
-  recruiter     Recruiter?   @relation(fields: [recruiterId], references: [id])
-  recruiterId   Int?
-  interviewer   Interviewer? @relation(fields: [interviewerId], references: [id])
-  interviewerId Int?
   salary        Int
   appliedOn     DateTime
   screenedOn    DateTime?
   interviewedOn DateTime?
   hiredOn       DateTime?
   eliminatedOn  DateTime?
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 model Role {
@@ -38,29 +34,9 @@ model Role {
 }
 
 model Company {
-  id          Int           @id @default(autoincrement())
-  name        String        @unique
-  website     String?       @unique
-  logo        String?       @unique
-  job         Job[]
-  recruiter   Recruiter[]
-  interviewer Interviewer[]
-}
-
-model Recruiter {
-  id        Int       @id @default(autoincrement())
-  firstName String
-  lastName  String
-  linkedIn  String?   @unique
-  job       Job[]
-  company   Company[]
-}
-
-model Interviewer {
-  id        Int       @id @default(autoincrement())
-  firstName String
-  lastName  String
-  linkedIn  String?   @unique
-  job       Job[]
-  company   Company[]
+  id      Int     @id @default(autoincrement())
+  name    String  @unique
+  website String? @unique
+  logo    String? @unique
+  job     Job[]
 }

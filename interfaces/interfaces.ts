@@ -19,27 +19,12 @@ interface Job {
   screenedOn: string
   interviewedOn: string
   eliminatedOn: string
-}
-
-interface Recruiter {
-  id: number
-  firstName: string
-  lastName: string
-  linkedIn: string
-}
-
-interface Interviewer {
-  id: number
-  firstName: string
-  lastName: string
-  linkedIn: string
+  hiredOn: string
 }
 
 interface Interview {
   id: number
   company: Company
-  recruiter?: Recruiter
-  interviewer?: Interviewer
   role: Role
   screenedOn?: string
   interviewedOn?: string
@@ -49,6 +34,7 @@ interface WelcomeData {
   applied: number
   eliminated: number
   interviews: number
+  hired: number
   recent: Job[]
   upcoming: Interview[]
 }
@@ -59,7 +45,6 @@ export interface DashboardProps {
 
 export interface WelcomeProps {
   data: WelcomeData
-  error: Error | null
 }
 
 export interface RecentProps {
@@ -75,6 +60,7 @@ export interface ChartProps {
   interviews: number
   applied: number
   eliminated: number
+  hired: number
 }
 
 export interface ScheduleProps {
@@ -85,6 +71,7 @@ export interface StatusProps {
   screenedOn?: string
   interviewedOn?: string
   eliminatedOn?: string
+  hiredOn?: string
 }
 
 export interface CompanyFields {
@@ -97,9 +84,20 @@ export interface RoleFields {
   name: string
 }
 
-export interface JobFields {
+export interface AddJobFields {
   appliedOn: string
   roleId: number
   companyId: number
   salary: number
+}
+
+export interface EditJobFields {
+  appliedOn: string
+  roleId: number
+  companyId: number
+  salary: number
+  screenedOn: string | null
+  interviewedOn: string | null
+  eliminatedOn: string | null
+  hiredOn: string | null
 }

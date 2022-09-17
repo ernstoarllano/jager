@@ -1,14 +1,15 @@
-import Profile from 'components/company/Profile'
 import Dashboard from 'components/Dashboard'
+import EditJob from 'components/forms/EditJob'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import useSWR from 'swr'
 import { fetcher } from 'utils/dataFetcher'
 
-const Company = ({ id }: any) => {
-  const { data, error } = useSWR(`/api/company/${id}`, fetcher)
+const Edit = ({ id }: any) => {
+  const { data, error } = useSWR(`/api/job/${id}`, fetcher)
 
-  if (!data) return <p>Loading...</p>
+  if (!data) return <Dashboard>Loading...</Dashboard>
+  if (error) return <Dashboard>Failed to load</Dashboard>
 
   return (
     <>
@@ -20,7 +21,7 @@ const Company = ({ id }: any) => {
         <meta property="og:image:height" content="485" />
       </Head>
       <Dashboard>
-        <Profile company={data} />
+        <EditJob data={data} />
       </Dashboard>
     </>
   )
@@ -36,4 +37,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-export default Company
+export default Edit

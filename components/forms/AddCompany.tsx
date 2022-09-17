@@ -20,7 +20,7 @@ const AddCompany = () => {
 
   const onSubmit: SubmitHandler<CompanyFields> = async (data) => {
     try {
-      const save = await fetch('/api/company', {
+      const save = await fetch('/api/company/add', {
         method: 'POST',
         body: JSON.stringify(data),
       })
