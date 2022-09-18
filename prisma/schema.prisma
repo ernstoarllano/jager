@@ -18,6 +18,7 @@ model Job {
   company       Company   @relation(fields: [companyId], references: [id])
   companyId     Int
   salary        Int
+  offer         Boolean   @default(false)
   appliedOn     DateTime
   screenedOn    DateTime?
   interviewedOn DateTime?

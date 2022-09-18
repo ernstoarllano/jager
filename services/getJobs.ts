@@ -66,7 +66,26 @@ export const getJobs = async () => {
       take: 5,
     })
 
-    return { jobs, applied, eliminated, hired, recent }
+    // Return offered jobs
+    const offers = await prisma.job.findMany({
+      where: {
+        offer: true,
+      },
+      select: {
+        id: true,
+        role: true,
+        company: true,
+        salary: true,
+        appliedOn: true,
+        screenedOn: true,
+        interviewedOn: true,
+        eliminatedOn: true,
+        hiredOn: true,
+      },
+      take: 5,
+    })
+
+    return { jobs, applied, eliminated, hired, recent, offers }
   } catch (err) {
     console.error(err)
 

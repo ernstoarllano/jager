@@ -1,12 +1,13 @@
 import WelcomeMessage from 'components/dashboard/WelcomeMessage'
 import Chart from 'components/dashboard/widgets/Chart'
 import Count from 'components/dashboard/widgets/Count'
+import Offers from 'components/dashboard/widgets/Offers'
 import Recent from 'components/dashboard/widgets/Recent'
-import Schedule from 'components/dashboard/widgets/Schedule'
 
 import { WelcomeProps } from 'interfaces/interfaces'
 
 const Welcome = ({ data }: WelcomeProps) => {
+  console.log(data)
   return (
     <section className="p-10 space-y-12">
       <WelcomeMessage />
@@ -26,7 +27,7 @@ const Welcome = ({ data }: WelcomeProps) => {
           />
         </div>
         <div className="lg:col-span-6 lg:row-span-full">
-          <Schedule upcoming={data.upcoming} />
+          <Offers offers={data.offers} />
         </div>
       </div>
       <Recent recent={data.recent} />

@@ -15,6 +15,7 @@ interface Job {
   role: Role
   company: Company
   salary: number
+  offer: boolean
   appliedOn: string
   screenedOn: string
   interviewedOn: string
@@ -37,6 +38,7 @@ interface WelcomeData {
   hired: number
   recent: Job[]
   upcoming: Interview[]
+  offers: Job[]
 }
 
 export interface DashboardProps {

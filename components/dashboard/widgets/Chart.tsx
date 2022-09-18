@@ -5,7 +5,6 @@ import { getPercentage } from 'utils/getPercentage'
 import { VictoryPie } from 'victory'
 
 const Chart = ({ interviews, applied, eliminated, hired }: ChartProps) => {
-  console.log(interviews, applied, eliminated)
   return (
     <Card>
       <h3>Jobs Status</h3>
