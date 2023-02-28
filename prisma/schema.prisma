@@ -66,3 +66,33 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map(name: "verification_tokens")
 }
+
+model Job {
+  id        String   @id @default(cuid())
+  title     String
+  company   String
+  location  String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map(name: "jobs")
+}
+
+model Role {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map(name: "roles")
+}
+
+model Company {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map(name: "companies")
+}
