@@ -2,7 +2,6 @@ import { prisma } from '@/lib/prisma'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { NextAuthOptions } from 'next-auth'
 import EmailProvider from 'next-auth/providers/email'
-import GitHubProvider from 'next-auth/providers/github'
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -26,17 +25,36 @@ export const authOptions: NextAuthOptions = {
       },
       from: process.env.smtpFrom,
     }),
-    GitHubProvider({
-      clientId: process.env.githubClientId || '',
-      clientSecret: process.env.githubClientSecret || '',
-    }),
   ],
   callbacks: {
-    async session({ session }) {
+    async session({ token, session }) {
+      if (token) {
+        session.user = {
+          name: token.name as string,
+          email: token.email as string,
+          image: token.image as string,
+        }
+      }
+
       return session
     },
     async jwt({ token }) {
-      return token
+      const dbUser = await prisma.user.findUnique({
+        where: {
+          email: token.email as string,
+        }
+      })
+
+      if (!dbUser) {
+        return token
+      }
+
+      return {
+        id: dbUser?.id,
+        name: dbUser?.name,
+        email: dbUser?.email,
+        image: dbUser?.image,
+      }
     },
     async redirect({ baseUrl }) {
       return baseUrl

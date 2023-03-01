@@ -1,15 +1,21 @@
 'use client'
 
-import { GitHubIcon } from '@/components/icons'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { signIn } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
+import { loginSchema } from '@/lib/validations/login'
+import { LoginFormData } from '@/types/forms'
+
 export default function UserAuthForm() {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm<LoginFormData>({
+    defaultValues: { email: '' },
+    resolver: zodResolver(loginSchema),
+  })
   const searchParams = useSearchParams()
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: LoginFormData) => {
     const result = await signIn('email', {
       email: data.email,
       redirect: false,
@@ -49,15 +55,7 @@ export default function UserAuthForm() {
           <span className="bg-white px-2 text-slate-500">Or continue with</span>
         </div>
       </div>
-      <div className="flex flex-col space-y-6">
-        <button
-          className="flex items-center justify-center w-full py-2 text-sm font-semibold text-center  bg-white space-x-2 rounded"
-          onClick={() => signIn('github')}
-        >
-          <GitHubIcon classNames="h-4 fill-black" />
-          <span>GitHub</span>
-        </button>
-      </div>
+      <div className="flex flex-col space-y-6"></div>
     </div>
   )
 }
