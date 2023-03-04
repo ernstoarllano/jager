@@ -29,31 +29,27 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ token, session }) {
       if (token) {
-        session.user = {
-          name: token.name as string,
-          email: token.email as string,
-          image: token.image as string,
-        }
+        session.user = token
       }
 
       return session
     },
     async jwt({ token }) {
-      const dbUser = await prisma.user.findUnique({
+      const user = await prisma.user.findUnique({
         where: {
           email: token.email as string,
         }
       })
 
-      if (!dbUser) {
+      if (!user) {
         return token
       }
 
       return {
-        id: dbUser?.id,
-        name: dbUser?.name,
-        email: dbUser?.email,
-        image: dbUser?.image,
+        id: user?.id,
+        name: user?.name,
+        email: user?.email,
+        image: user?.image,
       }
     },
     async redirect({ baseUrl }) {
