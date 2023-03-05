@@ -1,4 +1,4 @@
-import { User } from '@/types/user'
+import { User } from 'next-auth'
 
 export interface LoginFormData {
   email: string
