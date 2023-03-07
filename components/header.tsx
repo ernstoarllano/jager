@@ -1,6 +1,6 @@
 'use client'
 
-import { ArchiveIcon, GearIcon } from '@radix-ui/react-icons'
+import { ArchiveIcon, GearIcon, PlusIcon } from '@radix-ui/react-icons'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 
@@ -35,6 +35,12 @@ export default function Header({ user }: HeaderProps) {
             <Link className="flex items-center space-x-1" href="/jobs">
               <ArchiveIcon className="w-4 h-4" />
               <span>My Jobs</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link className="flex items-center space-x-1" href="/jobs/add">
+              <PlusIcon className="w-4 h-4" />
+              <span>Add Job</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>

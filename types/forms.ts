@@ -11,3 +11,8 @@ export interface UserFormData {
 export interface UserProfileFormProps {
   user: User
 }
+
+export interface AddJobFormData {
+  role: string
+  company: string
+}
