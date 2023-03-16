@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { Form } from '@/components/ui/form'
+
 import { userSchema } from '@/lib/validations/user'
 import { UserFormData, UserProfileFormProps } from '@/types/forms'
 import { cn } from '@/utils/styles'
@@ -44,11 +46,8 @@ export default function UserProfileForm({ user }: UserProfileFormProps) {
   }
 
   return (
-    <div className="min-w-[375px] space-y-6">
-      <form
-        className="w-full text-black bg-white border rounded-lg overflow-hidden space-y-6"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+    <div className="min-w-[375px]">
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="px-6 py-6 space-y-2">
           <label htmlFor="name" className="block">
             Name
@@ -74,7 +73,7 @@ export default function UserProfileForm({ user }: UserProfileFormProps) {
             Update Profile
           </button>
         </div>
-      </form>
+      </Form>
     </div>
   )
 }

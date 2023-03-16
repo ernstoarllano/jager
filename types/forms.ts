@@ -16,3 +16,8 @@ export interface AddJobFormData {
   role: string
   company: string
 }
+
+export interface FormProps {
+  onSubmit: () => void
+  children: React.ReactNode
+}

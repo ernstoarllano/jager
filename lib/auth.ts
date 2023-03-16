@@ -15,6 +15,7 @@ export const authOptions: NextAuthOptions = {
   },
   providers: [
     EmailProvider({
+      maxAge: 24 * 60 * 60,
       server: {
         host: process.env.smtpHost,
         port: process.env.smtpPort,

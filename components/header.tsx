@@ -32,19 +32,28 @@ export default function Header({ user }: HeaderProps) {
           <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link className="flex items-center space-x-1" href="/jobs">
+            <Link
+              className="flex flex-row-reverse items-center justify-between space-x-1"
+              href="/jobs"
+            >
               <ArchiveIcon className="w-4 h-4" />
               <span>My Jobs</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link className="flex items-center space-x-1" href="/jobs/add">
+            <Link
+              className="flex flex-row-reverse items-center justify-between space-x-1"
+              href="/jobs/add"
+            >
               <PlusIcon className="w-4 h-4" />
               <span>Add Job</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link className="flex items-center space-x-1" href="/settings">
+            <Link
+              className="flex flex-row-reverse items-center justify-between space-x-1"
+              href="/settings"
+            >
               <GearIcon className="w-4 h-4" />
               <span>Settings</span>
             </Link>

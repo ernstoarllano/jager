@@ -5,6 +5,8 @@ import { signIn } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
+import { Form } from '@/components/ui/form'
+
 import { loginSchema } from '@/lib/validations/login'
 import { LoginFormData } from '@/types/forms'
 
@@ -29,10 +31,7 @@ export default function UserAuthForm() {
 
   return (
     <div className="min-w-[375px] space-y-6">
-      <form
-        className="w-full p-6 text-sunnyside-black bg-white border border-solid border-slate-300 rounded space-y-6"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-2">
           <label htmlFor="email" className="block">
             Email
@@ -46,7 +45,7 @@ export default function UserAuthForm() {
         <button className="block w-full py-2 text-sm font-semibold text-white text-center bg-black rounded">
           Sign In
         </button>
-      </form>
+      </Form>
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-slate-300"></div>

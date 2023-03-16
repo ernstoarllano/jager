@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { Form } from '@/components/ui/form'
+
 import { jobSchema } from '@/lib/validations/job'
 import { AddJobFormData } from '@/types/forms'
 import { cn } from '@/utils/styles'
@@ -24,15 +26,28 @@ export default function AddJobForm({ roles, companies }: any) {
   })
 
   const onSubmit = async (data: AddJobFormData) => {
-    console.log(data)
+    setIsSaving(true)
+
+    const res = await fetch('/api/job/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    setIsSaving(false)
+
+    if (!res.ok) {
+      console.log('error')
+    }
+
+    router.push('/jobs')
   }
 
   return (
-    <div className="min-w-[375px] space-y-6">
-      <form
-        className="w-full text-black bg-white border rounded-lg overflow-hidden"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+    <div className="min-w-[375px]">
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="px-6 py-6 space-y-2">
           <label htmlFor="role" className="block">
             Role
@@ -84,7 +99,7 @@ export default function AddJobForm({ roles, companies }: any) {
             Add Job
           </button>
         </div>
-      </form>
+      </Form>
     </div>
   )
 }

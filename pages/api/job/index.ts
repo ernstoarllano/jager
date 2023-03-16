@@ -8,20 +8,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const session = await getServerSession(req, res, authOptions)
     const user = session?.user
+    const { role, company } = req.body
 
-    const jobs = await prisma.job.findMany({
-      where: {
+    await prisma.job.create({
+      data: {
         userId: user?.id as string,
+        companyId: company,
+        roleId: role,
       },
-      select: {
-        company: true,
-        role: true,
-      }
     })
 
-    return res.status(200).json(jobs)
+    return res.end()
 
   } catch (err) {
-    return res.status(500).end()
+    return res.status(422).end()
   }
 }
