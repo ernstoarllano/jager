@@ -1,10 +1,9 @@
-import { Company } from '@/types/company'
-import { Role } from '@/types/role'
 
 export interface Job {
   id: string
-  company: Company
-  role: Role
+  company: string
+  role: string
+  createdAt: string
   appliedAt: string
 }
 

@@ -7,11 +7,12 @@ import { useForm } from 'react-hook-form'
 
 import { Form } from '@/components/ui/form'
 
+import { useToast } from '@/hooks/use-toast'
 import { jobSchema } from '@/lib/validations/job'
 import { AddJobFormData } from '@/types/forms'
 import { cn } from '@/utils/styles'
 
-export default function AddJobForm({ roles, companies }: any) {
+export default function AddJobForm() {
   const router = useRouter()
 
   const [isSaving, setIsSaving] = useState<boolean>(false)
@@ -29,7 +30,7 @@ export default function AddJobForm({ roles, companies }: any) {
     setIsSaving(true)
 
     const res = await fetch('/api/job/', {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -39,11 +40,17 @@ export default function AddJobForm({ roles, companies }: any) {
     setIsSaving(false)
 
     if (!res.ok) {
-      console.log('error')
+      throw new Error('An error occurred. Please try again.')
+    } else {
+      toast({
+        description: 'Job has been added.',
+      })
+      router.push('/jobs')
+      router.refresh()
     }
-
-    router.push('/jobs')
   }
+
+  const { toast } = useToast()
 
   return (
     <div className="min-w-[375px]">
@@ -52,17 +59,11 @@ export default function AddJobForm({ roles, companies }: any) {
           <label htmlFor="role" className="block">
             Role
           </label>
-          <select
+          <input
             className="w-[350px] px-3 py-2 border border-solid border-slate-300 rounded"
-            placeholder="Select a role"
+            type="text"
             {...register('role')}
-          >
-            {roles.map((role: any) => (
-              <option key={role.id} value={role.id}>
-                {role.name}
-              </option>
-            ))}
-          </select>
+          />
           {errors.role && (
             <p className="text-xs text-red-500 bg-red-300">
               {errors.role.message}
@@ -73,17 +74,11 @@ export default function AddJobForm({ roles, companies }: any) {
           <label htmlFor="company" className="block">
             Company
           </label>
-          <select
+          <input
             className="w-[350px] px-3 py-2 border border-solid border-slate-300 rounded"
-            placeholder="Select a company"
+            type="text"
             {...register('company')}
-          >
-            {companies.map((company: any) => (
-              <option key={company.id} value={company.id}>
-                {company.name}
-              </option>
-            ))}
-          </select>
+          />
           {errors.company && (
             <p className="text-xs text-red-500 bg-red-300">
               {errors.company.message}

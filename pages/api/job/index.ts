@@ -13,8 +13,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await prisma.job.create({
       data: {
         userId: user?.id as string,
-        companyId: company,
-        roleId: role,
+        company: company,
+        role: role,
       },
     })
 

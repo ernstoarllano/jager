@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 
 import { Form } from '@/components/ui/form'
 
+import { useToast } from '@/hooks/use-toast'
 import { userSchema } from '@/lib/validations/user'
 import { UserFormData, UserProfileFormProps } from '@/types/forms'
 import { cn } from '@/utils/styles'
@@ -39,11 +40,16 @@ export default function UserProfileForm({ user }: UserProfileFormProps) {
     setIsSaving(false)
 
     if (!res.ok) {
-      console.log('error')
+      throw new Error('An error occurred. Please try again.')
+    } else {
+      toast({
+        description: 'Profile has been updated.',
+      })
+      router.refresh()
     }
-
-    router.refresh()
   }
+
+  const { toast } = useToast()
 
   return (
     <div className="min-w-[375px]">

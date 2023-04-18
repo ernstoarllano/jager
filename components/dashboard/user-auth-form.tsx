@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 
 import { Form } from '@/components/ui/form'
 
+import { useToast } from '@/hooks/use-toast'
 import { loginSchema } from '@/lib/validations/login'
 import { LoginFormData } from '@/types/forms'
 
@@ -26,8 +27,15 @@ export default function UserAuthForm() {
 
     if (!result?.ok) {
       throw new Error(result?.error || 'An error occurred. Please try again.')
+    } else {
+      toast({
+        description:
+          'A sign in link has been sent to your email address. Please check your inbox.',
+      })
     }
   }
+
+  const { toast } = useToast()
 
   return (
     <div className="min-w-[375px] space-y-6">

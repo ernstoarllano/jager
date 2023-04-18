@@ -4,12 +4,13 @@ import { formatDate } from '@/utils/dates'
 
 export default function JobsList({ jobs }: JobsListProps) {
   return (
-    <div className="space-y-2">
+    <div className="grid grid-cols-4 gap-6">
       {jobs?.map((job) => (
-        <div key={job.id}>
-          <h3>{job.role.name}</h3>
-          <p>{job.company.name}</p>
-          <time>{formatDate(job.appliedAt)}</time>
+        <div className="p-4 rounded-md shadow-md" key={job.id}>
+          <h3>{job.role}</h3>
+          <p>{job.company}</p>
+          <time>{formatDate(job.createdAt)}</time>
+          <span className="block">Active</span>
         </div>
       ))}
     </div>

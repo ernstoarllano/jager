@@ -2,6 +2,8 @@ import { Inter } from 'next/font/google'
 
 import { GenericLayoutProps } from '@/types/layouts'
 
+import Toaster from '@/components/toaster'
+
 import { cn } from '@/utils/styles'
 
 import '@/styles/global.css'
@@ -21,6 +23,7 @@ export default function RootLayout({ children }: GenericLayoutProps) {
     <html lang="en">
       <body className={cn('font-inter bg-black', inter.variable)}>
         {children}
+        <Toaster />
       </body>
     </html>
   )
