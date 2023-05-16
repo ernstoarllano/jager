@@ -21,7 +21,7 @@ const inter = Inter({
 export default function RootLayout({ children }: GenericLayoutProps) {
   return (
     <html lang="en">
-      <body className={cn('font-inter bg-black', inter.variable)}>
+      <body className={cn('font-inter bg-gray-900', inter.variable)}>
         {children}
         <Toaster />
       </body>

@@ -1,5 +1,7 @@
-export default function MainNav() {
+export default function MainNav({ children }: any) {
   return (
-    <nav className="lg:col-span-2 lg:flex lg:flex-col lg:flex-no-wrap lg:border-r-[1px] space-y-8"></nav>
+    <nav className="lg:col-span-2 lg:flex lg:flex-col lg:flex-no-wrap px-3 py-4 lg:px-6 lg:py-8 text-gray-100 lg:border-r-[1px]">
+      {children}
+    </nav>
   )
 }

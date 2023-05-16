@@ -11,10 +11,12 @@ export default async function SettingsPage() {
   if (!user) redirect(authOptions.pages!.signIn as string)
 
   return (
-    <section className="px-6 py-3 space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold">Settings</h1>
-        <p>Manage account and website settings.</p>
+    <section className="lg:grid lg:grid-cols-12">
+      <div className="lg:col-span-2">
+        <h3 className="font-medium text-gray-700">Personal Info</h3>
+        <p className="text-sm text-gray-500">
+          Update your photo and personal details.
+        </p>
       </div>
       <UserProfileForm user={user} />
     </section>

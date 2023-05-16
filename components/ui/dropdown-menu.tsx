@@ -22,7 +22,7 @@ const DropdownMenuContent = forwardRef<
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
-        'min-w-[8rem] p-2 text-black bg-white rounded-md shadow-lg overflow-hidden data-[side=right]:slide-in-from-left-2 data-[side=left]:slide-in-from-right-2 data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2',
+        'min-w-[8rem] p-2 text-gray-900 bg-white rounded-md shadow-lg overflow-hidden data-[side=right]:slide-in-from-left-2 data-[side=left]:slide-in-from-right-2 data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2',
         className
       )}
       {...props}

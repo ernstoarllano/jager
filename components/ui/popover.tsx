@@ -17,7 +17,7 @@ const PopoverContent = forwardRef<
     <PopoverPrimitive.Portal>
       <PopoverPrimitive.Content
         className={cn(
-          'flex flex-col w-full min-w-[220px] max-w-fit p-3 text-black bg-white rounded-md shadow-md',
+          'flex flex-col w-full min-w-[220px] max-w-fit p-3 text-gray-900 bg-white rounded-md shadow-md',
           className
         )}
         align={align}

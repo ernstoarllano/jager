@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation'
 
-import Header from '@/components/header'
 import MainContainer from '@/components/main-container'
 import MainNav from '@/components/main-nav'
+import Nav from '@/components/nav'
 import { GenericLayoutProps } from '@/types/layouts'
 
 import { authOptions } from '@/lib/auth'
@@ -17,11 +17,10 @@ export default async function DashboardLayout({
 
   return (
     <div className="lg:grid lg:grid-cols-12 lg:h-screen">
-      <MainNav />
-      <MainContainer>
-        <Header user={user} />
-        {children}
-      </MainContainer>
+      <MainNav>
+        <Nav user={user} />
+      </MainNav>
+      <MainContainer>{children}</MainContainer>
     </div>
   )
 }

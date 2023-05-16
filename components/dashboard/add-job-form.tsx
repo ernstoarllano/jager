@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 
 import { useToast } from '@/hooks/use-toast'
@@ -43,6 +44,7 @@ export default function AddJobForm() {
       throw new Error('An error occurred. Please try again.')
     } else {
       toast({
+        title: 'Success',
         description: 'Job has been added.',
       })
       router.push('/jobs')
@@ -53,14 +55,14 @@ export default function AddJobForm() {
   const { toast } = useToast()
 
   return (
-    <div className="min-w-[375px]">
+    <div className="lg:col-span-10">
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="px-6 py-6 space-y-2">
-          <label htmlFor="role" className="block">
+          <label htmlFor="role" className="block text-gray-700 font-medium">
             Role
           </label>
           <input
-            className="w-[350px] px-3 py-2 border border-solid border-slate-300 rounded"
+            className="w-[350px] px-3 py-2 border border-gray-300 rounded-lg"
             type="text"
             {...register('role')}
           />
@@ -71,11 +73,11 @@ export default function AddJobForm() {
           )}
         </div>
         <div className="px-6 py-6 space-y-2">
-          <label htmlFor="company" className="block">
+          <label htmlFor="company" className="block text-gray-700 font-medium">
             Company
           </label>
           <input
-            className="w-[350px] px-3 py-2 border border-solid border-slate-300 rounded"
+            className="w-[350px] px-3 py-2 border border-gray-300 rounded-lg"
             type="text"
             {...register('company')}
           />
@@ -85,14 +87,14 @@ export default function AddJobForm() {
             </p>
           )}
         </div>
-        <div className="px-6 py-4 border-t bg-slate-50">
-          <button
+        <div className="px-6 py-4 border-t border-gray-200">
+          <Button
             className={cn(
-              'block w-fit-content px-4 py-2 text-sm font-semibold text-white text-center bg-black rounded'
+              'block w-fit-content ml-auto px-4 py-2 text-sm font-medium text-white text-center bg-violet-600 rounded-lg'
             )}
           >
             Add Job
-          </button>
+          </Button>
         </div>
       </Form>
     </div>

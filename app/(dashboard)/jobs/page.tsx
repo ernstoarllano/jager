@@ -6,11 +6,12 @@ export default async function JobsPage() {
   const jobs = await getJobs()
 
   return (
-    <section className="px-6 py-3 space-y-8">
+    <section className="space-y-8">
       <div className="space-y-2">
-        <h1 className="text-2xl font-bold">My Jobs</h1>
-        <JobsList jobs={jobs} />
+        <h2 className="text-3xl font-medium text-gray-700">Jobs</h2>
+        <p className="text-sm text-gray-500">View your job applications.</p>
       </div>
+      <JobsList jobs={jobs} />
     </section>
   )
 }

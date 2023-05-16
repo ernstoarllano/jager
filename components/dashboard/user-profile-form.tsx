@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 
 import { useToast } from '@/hooks/use-toast'
@@ -43,6 +44,7 @@ export default function UserProfileForm({ user }: UserProfileFormProps) {
       throw new Error('An error occurred. Please try again.')
     } else {
       toast({
+        title: 'Success',
         description: 'Profile has been updated.',
       })
       router.refresh()
@@ -52,14 +54,14 @@ export default function UserProfileForm({ user }: UserProfileFormProps) {
   const { toast } = useToast()
 
   return (
-    <div className="min-w-[375px]">
+    <div className="lg:col-span-10">
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="px-6 py-6 space-y-2">
-          <label htmlFor="name" className="block">
+          <label htmlFor="name" className="block text-gray-700 font-medium">
             Name
           </label>
           <input
-            className="w-[350px] px-3 py-2 border border-solid border-slate-300 rounded"
+            className="w-[350px] px-3 py-2 border border-gray-300 rounded-lg"
             type="text"
             {...register('name')}
           />
@@ -69,15 +71,15 @@ export default function UserProfileForm({ user }: UserProfileFormProps) {
             </p>
           )}
         </div>
-        <div className="px-6 py-4 border-t bg-slate-50">
-          <button
+        <div className="px-6 py-4 border-t border-gray-200">
+          <Button
             className={cn(
-              'block w-fit-content px-4 py-2 text-sm font-semibold text-white text-center bg-black rounded'
+              'block w-fit-content ml-auto px-4 py-2 text-sm font-medium text-white text-center bg-violet-600 rounded-lg'
             )}
             disabled={isSaving}
           >
             Update Profile
-          </button>
+          </Button>
         </div>
       </Form>
     </div>

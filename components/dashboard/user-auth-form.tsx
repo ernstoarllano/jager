@@ -50,7 +50,7 @@ export default function UserAuthForm() {
             {...register('email')}
           />
         </div>
-        <button className="block w-full py-2 text-sm font-semibold text-white text-center bg-black rounded">
+        <button className="block w-full py-2 text-sm font-semibold text-white text-center bg-gray-900 rounded">
           Sign In
         </button>
       </Form>
