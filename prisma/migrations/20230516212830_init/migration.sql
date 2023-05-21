@@ -52,34 +52,14 @@ CREATE TABLE "verification_tokens" (
 -- CreateTable
 CREATE TABLE "jobs" (
     "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "role" TEXT NOT NULL,
     "company" TEXT NOT NULL,
-    "location" TEXT NOT NULL,
-    "url" TEXT NOT NULL,
+    "status" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "jobs_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "roles" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "roles_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "companies" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "companies_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -102,3 +82,6 @@ ALTER TABLE "accounts" ADD CONSTRAINT "accounts_userId_fkey" FOREIGN KEY ("userI
 
 -- AddForeignKey
 ALTER TABLE "sessions" ADD CONSTRAINT "sessions_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "jobs" ADD CONSTRAINT "jobs_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;

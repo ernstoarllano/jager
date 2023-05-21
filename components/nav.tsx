@@ -2,6 +2,7 @@
 
 import {
   BarChartIcon,
+  Crosshair2Icon,
   ExitIcon,
   GearIcon,
   LayersIcon,
@@ -17,6 +18,16 @@ import { Button } from '@/components/ui/button'
 export default function Nav({ user }: NavProps) {
   return (
     <>
+      <header className="mb-8">
+        <Link href="/">
+          <h1 className="flex flex-row items-center text-3xl font-bigShouldersDisplay font-black uppercase space-x-2">
+            <div className="p-1 bg-white rounded-lg">
+              <Crosshair2Icon className="w-5 h-5 text-gray-900" />
+            </div>
+            <span className="inline-block">Jäger</span>
+          </h1>
+        </Link>
+      </header>
       <ul className="mb-8 font-medium space-y-1">
         <li>
           <Link

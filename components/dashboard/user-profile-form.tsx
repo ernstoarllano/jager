@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
+import { Spinner } from '@/components/ui/spinner'
 
 import { useToast } from '@/hooks/use-toast'
 import { userSchema } from '@/lib/validations/user'
@@ -45,7 +46,7 @@ export default function UserProfileForm({ user }: UserProfileFormProps) {
     } else {
       toast({
         title: 'Success',
-        description: 'Profile has been updated.',
+        description: 'Settings has been updated.',
       })
       router.refresh()
     }
@@ -76,9 +77,8 @@ export default function UserProfileForm({ user }: UserProfileFormProps) {
             className={cn(
               'block w-fit-content ml-auto px-4 py-2 text-sm font-medium text-white text-center bg-violet-600 rounded-lg'
             )}
-            disabled={isSaving}
           >
-            Update Profile
+            {!isSaving ? `Update Profile` : <Spinner />}
           </Button>
         </div>
       </Form>

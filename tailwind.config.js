@@ -13,6 +13,7 @@ module.exports = {
       },
       fontFamily: {
         inter: ['var(--font-inter)', 'sans-serif'],
+        bigShouldersDisplay: ['var(--font-big-shoulders-display)', 'sans-serif'],
       }
     },
   },

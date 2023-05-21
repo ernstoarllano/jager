@@ -18,6 +18,7 @@ export interface AddJobFormData {
 }
 
 export interface FormProps {
+  className?: string
   onSubmit: () => void
   children: React.ReactNode
 }

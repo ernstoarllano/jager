@@ -17,6 +17,7 @@ export default function UserAuthForm() {
     resolver: zodResolver(loginSchema),
   })
   const searchParams = useSearchParams()
+  const { toast } = useToast()
 
   const onSubmit = async (data: LoginFormData) => {
     const result = await signIn('email', {
@@ -35,11 +36,9 @@ export default function UserAuthForm() {
     }
   }
 
-  const { toast } = useToast()
-
   return (
     <div className="min-w-[375px] space-y-6">
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form className="p-4 space-y-2" onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-2">
           <label htmlFor="email" className="block">
             Email
@@ -50,11 +49,11 @@ export default function UserAuthForm() {
             {...register('email')}
           />
         </div>
-        <button className="block w-full py-2 text-sm font-semibold text-white text-center bg-gray-900 rounded">
+        <button className="block w-full py-2 text-sm font-semibold text-white text-center bg-violet-600 rounded">
           Sign In
         </button>
       </Form>
-      <div className="relative">
+      <div className="hidden">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-slate-300"></div>
         </div>
