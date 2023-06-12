@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && prisma generate",
     "start": "next start",
     "lint": "next lint",
     "turbo": "next dev --turbo --show-all",
     "check-types": "tsc --noEmit",
     "check-lint": "eslint . --ext ts, --ext tsx",
     "format": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
