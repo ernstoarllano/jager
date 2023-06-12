@@ -15,6 +15,7 @@ export interface UserProfileFormProps {
 export interface AddJobFormData {
   role: string
   company: string
+  status: "applied" | "interview" | "offer" | "rejected" | "accepted"
 }
 
 export interface FormProps {

@@ -8,13 +8,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const session = await getServerSession(req, res, authOptions)
     const user = session?.user
-    const { role, company } = req.body
+    const { role, company, status } = req.body
 
     await prisma.job.create({
       data: {
         userId: user?.id as string,
         company: company,
         role: role,
+        status: status,
       },
     })
 

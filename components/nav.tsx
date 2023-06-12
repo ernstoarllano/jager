@@ -2,45 +2,48 @@
 
 import {
   BarChartIcon,
-  Crosshair2Icon,
   ExitIcon,
   GearIcon,
   LayersIcon,
 } from '@radix-ui/react-icons'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import { NavProps } from '@/types/nav'
 
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 
+import { cn } from '@/utils/styles'
+
 export default function Nav({ user }: NavProps) {
+  const pathname = usePathname()
+
+  const isNavActive = (path: string) => {
+    if (pathname === path) {
+      return cn(
+        'flex flex-row items-center px-4 py-2 bg-gray-700 rounded-md space-x-2'
+      )
+    } else {
+      return cn(
+        'flex flex-row items-center px-4 py-2 bg-transparent rounded-md space-x-2'
+      )
+    }
+  }
+
   return (
     <>
-      <header className="mb-8">
-        <Link href="/">
-          <h1 className="flex flex-row items-center text-3xl font-bigShouldersDisplay font-black uppercase space-x-2">
-            <div className="p-1 bg-white rounded-lg">
-              <Crosshair2Icon className="w-5 h-5 text-gray-900" />
-            </div>
-            <span className="inline-block">Jäger</span>
-          </h1>
-        </Link>
-      </header>
       <ul className="mb-8 font-medium space-y-1">
         <li>
-          <Link
-            className="flex flex-row items-center px-4 py-2 bg-gray-700 rounded-md space-x-2"
-            href="/"
-          >
+          <Link className={isNavActive('/')} href="/">
             <BarChartIcon className="w-5 h-5 text-gray-300" />
             <span>Dashboard</span>
           </Link>
         </li>
         <li>
           <Link
-            className="flex flex-row items-center px-4 py-2 bg-transparent rounded-md space-x-2"
+            className={isNavActive('/jobs') || isNavActive('/jobs/add')}
             href="/jobs"
           >
             <LayersIcon className="w-5 h-5 text-gray-300" />
@@ -50,10 +53,7 @@ export default function Nav({ user }: NavProps) {
       </ul>
       <ul className="font-medium space-y-1">
         <li>
-          <Link
-            className="flex flex-row items-center px-4 py-2 bg-transparent rounded-md space-x-2"
-            href="/settings"
-          >
+          <Link className={isNavActive('/settings')} href="/settings">
             <GearIcon className="w-5 h-5 text-gray-300" />
             <span>Settings</span>
           </Link>

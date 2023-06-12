@@ -1,9 +1,8 @@
-
 export interface Job {
   id: string
   company: string
   role: string
-  status: string
+  status: "applied" | "interview" | "offer" | "rejected" | "accepted"
   createdAt: string
   appliedAt: string
 }

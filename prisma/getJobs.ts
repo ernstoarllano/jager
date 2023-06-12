@@ -15,6 +15,7 @@ export const getJobs = async (): Promise<Promise<Job[]> | null> => {
         id: true,
         company: true,
         role: true,
+        status: true,
         createdAt: true,
       },
       orderBy: {

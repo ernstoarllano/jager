@@ -2,13 +2,13 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 import { Spinner } from '@/components/ui/spinner'
 
+import { useSaving } from '@/hooks/use-saving'
 import { useToast } from '@/hooks/use-toast'
 import { userSchema } from '@/lib/validations/user'
 import { UserFormData, UserProfileFormProps } from '@/types/forms'
@@ -16,8 +16,8 @@ import { cn } from '@/utils/styles'
 
 export default function UserProfileForm({ user }: UserProfileFormProps) {
   const router = useRouter()
-
-  const [isSaving, setIsSaving] = useState<boolean>(false)
+  const { isSaving, setIsSaving } = useSaving()
+  const { toast } = useToast()
 
   const {
     register,
@@ -51,8 +51,6 @@ export default function UserProfileForm({ user }: UserProfileFormProps) {
       router.refresh()
     }
   }
-
-  const { toast } = useToast()
 
   return (
     <div className="lg:col-span-10">
